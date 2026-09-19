@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>بي كير | تأمين المركبات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary-blue: #165b95;
+            --accent-orange: #f2901a;
+            --bg-color: #f7f9fb;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --white: #ffffff;
+            --border-light: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            padding-bottom: 80px;
+        }
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo img {
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-circ {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 16px;
+            background: var(--white);
+        }
+
+        .profile-icon {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+
+        .main-tabs {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 8px;
+            background: var(--white);
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .main-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .main-tab {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1.5px solid var(--primary-blue);
+            font-size: 14px;
+            font-weight: 700;
+            color: #526377;
+            background-color: var(--white);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        /* ====== مكان تغيير حجم أيقونات التبويبات الرئيسية (المركبات، الأخطاء الطبية، السفر، العمالة المنزلية) ====== */
+        .main-tab img {
+            width: 28px; /* تم تكبير الحجم من 18px إلى 28px */
+            height: 28px; /* تم تكبير الحجم من 18px إلى 28px */
+            object-fit: contain;
+        }
+
+        .main-tab.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        /* تم إلغاء الفلتر لأننا سنستبدل الصورة نفسها عبر الجافاسكريبت */
+        .main-tab.active img {
+            /* filter: brightness(0) invert(1); */
+        }
+
+
+        .hero {
+            background: linear-gradient(to bottom, #eaf4fb 0%, #f7f9fb 100%);
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--primary-blue);
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 13px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background: var(--accent-orange);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .sponsor-banner {
+            margin: 0 16px 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .sponsor-banner img {
+            width: 100%;
+            display: block;
+        }
+
+
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin: 24px 16px 12px;
+            line-height: 1.4;
+        }
+
+        .section-title span {
+            color: var(--accent-orange);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-gray);
+            margin: 0 20px 20px;
+            line-height: 1.6;
+        }
+
+
+        .main-coverage-title {
+            font-size: 42px; 
+            line-height: 1.2;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .main-coverage-subtitle {
+            color: var(--primary-blue); 
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 0 16px 24px;
+        }
+
+        .big-heading {
+            font-size: 46px; 
+            line-height: 1.2;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .blue-sub {
+            color: var(--primary-blue); 
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0 16px 24px;
+            text-align: center;
+        }
+
+        .coverage-tabs {
+            display: flex;
+            margin: 0 16px 20px;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .cov-tab {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--text-gray);
+            background: var(--white);
+            border: none;
+        }
+
+        .cov-tab.active {
+            background: var(--accent-orange);
+            color: var(--white);
+        }
+
+        .coverage-info {
+            background: var(--bg-color);
+            margin: 0 16px 20px;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .coverage-info h3 {
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .coverage-info p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        .coverage-info a {
+            color: var(--primary-blue);
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 15px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-blue);
+        }
+        .dot.active {
+            background: var(--primary-blue);
+        }
+
+        .features-table {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin: 0 16px 24px;
+            overflow: hidden;
+        }
+
+        .tb-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: #fdfdfd;
+            border-bottom: 1px solid var(--border-light);
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-size: 14px;
+        }
+
+        .tb-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .tb-row:last-child {
+            border-bottom: none;
+        }
+
+        .tb-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tb-icon {
+            width: 32px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 18px;
+        }
+
+        .tb-text h4 {
+            color: var(--primary-blue);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .tb-text p {
+            color: var(--text-gray);
+            font-size: 11px;
+        }
+
+        .tb-check {
+            color: var(--primary-blue);
+            font-size: 16px;
+        }
+
+        .offer-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 0 16px 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 5px;
+        }
+        .offer-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .offer-tab {
+            flex: 0 0 auto;
+            padding: 10px 16px;
+            border-radius: 25px;
+            border: 1px solid var(--primary-blue);
+            background: var(--white);
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* ====== مكان تغيير حجم أيقونات تبويبات العروض (الصحة والجمال، خدمات السيارات، التسوق، الفنادق، المطاعم) ====== */
+        .offer-tab img {
+            width: 30px; /* تم تكبير الحجم من 20px إلى 30px */
+            height: 30px; /* تم تكبير الحجم من 20px إلى 30px */
+            object-fit: contain;
+        }
+
+        .offer-tab.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .offer-tab.active img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* ====== Offer Slider Styles ====== */
+        .offers-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 16px;
+            padding: 0 16px; 
+            margin-bottom: 10px;
+        }
+        .offers-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .offer-card {
+            flex: 0 0 calc(100% - 32px); 
+            max-width: 448px; 
+            scroll-snap-align: center;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            background: var(--white);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* ====== مكان تغيير حجم الصور داخل بطاقات العروض (سبيرو، جيني، إلخ) ====== */
+        .offer-card img {
+            height: 75px; /* تم تكبير الحجم من 50px إلى 75px (أكبر بمرة ونصف) */
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        /* ====== مكان تغيير حجم خط الخصم في بطاقات العروض ====== */
+        .offer-discount {
+            font-size: 36px; /* تم تكبير الحجم من 24px إلى 36px */
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 4px;
+            text-align: center; /* لضمان توسيط النص */
+        }
+
+        .offer-name {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .btn-blue {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .btn-outline-blue {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 12px;
+            width: calc(100% - 32px);
+            margin: 0 16px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 15px;
+            text-align: center;
+            display: block;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 16px 24px;
+        }
+
+        .grid-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 12px 6px;
+            text-align: center;
+        }
+
+        .grid-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            background: #eaf4fb;
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .grid-item p {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1.3;
+        }
+
+        .articles-list {
+            padding: 0 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .article-card {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .art-img {
+            width: 70px;
+            height: 55px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-left: 12px;
+        }
+
+        .art-title {
+            flex: 1;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1.5;
+        }
+
+        .art-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 12px;
+            margin-right: 12px;
+        }
+
+        .target-tabs {
+            display: flex;
+            margin: 0 auto 20px;
+            width: 200px;
+            background: var(--white);
+            border-radius: 25px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .t-tab {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-gray);
+            border: none;
+            background: var(--white);
+        }
+
+        .t-tab.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .prod-grid {
+            display: flex;
+            gap: 14px;
+            padding: 0 12px 24px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            mask-image: linear-gradient(to left, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to left, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+        .prod-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .prod-card {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            flex: 0 0 180px;   
+            height: 230px;     
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .prod-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 14px;
+            background: linear-gradient(to top, rgba(22, 91, 149, 0.92), transparent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .prod-card-content h4 {
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .prod-arrow {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-orange);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+            color: var(--white);
+        }
+
+        .faq-list {
+            padding: 0 16px 20px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .faq-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .floating-btns {
+            position: fixed;
+            bottom: 20px;
+            left: max(20px, calc((100vw - 480px) / 2 + 20px));
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 99;
+        }
+
+        .f-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .f-support {
+            background: var(--accent-orange);
+        }
+        .f-up {
+            background: var(--primary-blue);
+        }
+        
+        .safe-journey-wrap {
+            background-color: #f2f7fb; 
+            padding-top: 24px; 
+            margin-top: 24px; 
+            padding-bottom: 16px;
+        }
+
+        /* ====== Slider Styles ====== */
+        .slider-container {
+            position: relative;
+            width: 100%;
+        }
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slider-img.active {
+            position: relative;
+            opacity: 1;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <header class="header">
+            <div class="header-logo">
+                <img src="https://bcare.com.sa/assets/images/Bcare-logo.svg" alt="BCare Logo" />
+            </div>
+            <div class="header-actions">
+                <button class="icon-circ profile-icon"><i class="fa-solid fa-user"></i></button>
+                <div class="lang-btn">EN <i class="fa-solid fa-globe"></i></div>
+                <button class="icon-circ"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="icon-circ"><i class="fa-solid fa-headset"></i></button>
+            </div>
+        </header>
+
+        <div class="main-tabs">
+            <button class="main-tab active" data-target="vehicles">
+                <!-- 
+                  ====== تغيير صورة أيقونة تبويب المركبات ======
+                  data-inactive-src : الصورة في الوضع العادي (غير نشط)
+                  data-active-src   : الصورة عند النقر (نشط)
+                  استبدل الرابطين بالصور التي تريدها
+                -->
+                <img 
+                    src="https://i.imgur.com/Eg7lbdY.png" 
+                    data-inactive-src="https://i.imgur.com/TbchfN8.png" 
+                    data-active-src="https://i.imgur.com/Eg7lbdY.png" 
+                    alt="المركبات" />
+                <span>المركبات</span>
+            </button>
+            <button class="main-tab" data-target="medical">
+                <!-- 
+                  ====== تغيير صورة أيقونة تبويب الأخطاء الطبية ======
+                -->
+                <img 
+                    src="https://i.imgur.com/TtuUh5T.png" 
+                    data-inactive-src="https://i.imgur.com/TtuUh5T.png" 
+                    data-active-src="https://i.imgur.com/7b0VDLG.png" 
+                    alt="الأخطاء الطبية" />
+                <span>الأخطاء الطبية</span>
+            </button>
+            <button class="main-tab" data-target="travel">
+                <!-- 
+                  ====== تغيير صورة أيقونة تبويب السفر ======
+                -->
+                <img 
+                    src="https://i.imgur.com/7GX7yjF.png" 
+                    data-inactive-src="https://i.imgur.com/7GX7yjF.png" 
+                    data-active-src="https://i.imgur.com/AC4H4fE.png" 
+                    alt="السفر" />
+                <span>السفر</span>
+            </button>
+            <button class="main-tab" data-target="home">
+                <!-- 
+                  ====== تغيير صورة أيقونة تبويب العمالة المنزلية ======
+                -->
+                <img 
+                    src="https://i.imgur.com/OngGilB.png" 
+                    data-inactive-src="https://i.imgur.com/OngGilB.png" 
+                    data-active-src="https://i.imgur.com/ZfIqPYY.png" 
+                    alt="العمالة المنزلية" />
+                <span>العمالة المنزلية</span>
+            </button>
+        </div>
+
+        <section class="hero">
+            <img src="https://i.imgur.com/hCc82bT.jpeg" alt="Car Insurance" class="hero-img" id="hero-img" />
+            <a href="page1.html" class="btn-primary">طلب العروض</a>
+        </section>
+
+        <!-- ====== بداية السلايدر (تم استبدال الصورة الثابتة) ====== -->
+        <div class="sponsor-banner" style="margin-bottom: 10px;">
+            <div class="slider-container">
+                <!-- ضع رابط الصورة الأولى هنا -->
+                <img src="https://bcare.com.sa/assets/images/newDesign/roshnmob.jpg" alt="Slide 1" class="slider-img active" />
+                <!-- ضع رابط الصورة الثانية هنا -->
+                <img src="https://i.imgur.com/hlsBKZj.png" alt="Slide 2" class="slider-img" />
+                <!-- ضع رابط الصورة الثالثة هنا -->
+                <img src="https://i.imgur.com/i8Sr98J.png" alt="Slide 3" class="slider-img" />
+            </div>
+        </div>
+        <div class="dots" style="margin-bottom: 20px;">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <!-- ====== نهاية السلايدر ====== -->
+
+        <h2 class="section-title main-coverage-title" id="hero-title">التغطية المناسبة<br /><span>لتأمين</span> سيارتك</h2>
+        <p class="section-subtitle main-coverage-subtitle" id="hero-subtitle">قارن بين أبرز مزايا أنواع تأمين السيارات الثلاثة، واختر التغطية التي تناسب احتياجاتك وميزانيتك</p>
+
+        <div class="sponsor-banner" id="table-image-container">
+            <img src="https://bcare.com.sa/assets/images/newDesign/car_table_mobile.png" alt="Car" />
+        </div>
+
+        <div class="coverage-tabs" id="coverage-tabs">
+            <button class="cov-tab">ضد الغير</button>
+            <button class="cov-tab">مميز</button>
+            <button class="cov-tab active">شامل</button>
+        </div>
+
+        <div class="coverage-info" id="coverage-info">
+            <h3>ما الذي يغطيه التأمين؟</h3>
+            <p>التأمين الشامل من بي كير هو خيارك الأول والذكي لو تبحث عن أرخص تأمين شامل في السعودية يجمع بين السعر المنافس والحماية، لأنه يوفر حماية كاملة لسيارتك تضمن تصليحها أو استبدالها في حال وقوع حادث حتى لو كان الخطأ عليك 100%، بالإضافة لتغطية المسؤولية تجاه الغير... <a href="page1.html">اقرأ المزيد</a></p>
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <div class="features-table" id="features-table">
+            <div class="tb-header">
+                <span>الميزة</span>
+                <span>الوصف</span>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                    <div class="tb-text">
+                        <h4>المسؤولية تجاه الغير</h4>
+                        <p>الأضرار أو الإصابات التي تلحق بالآخرين</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-car-burst"></i></div>
+                    <div class="tb-text">
+                        <h4>تغطية أضرار المركبة</h4>
+                        <p>تغطي تكاليف إصلاح مركبتك</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-mask"></i></div>
+                    <div class="tb-text">
+                        <h4>الحماية من السرقة</h4>
+                        <p>تغطي مركبتك في حال تعرضها للسرقة</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-fire"></i></div>
+                    <div class="tb-text">
+                        <h4>الحريق والانفجار</h4>
+                        <p>تغطي الأضرار الناتجة عن الحريق أو الانفجار</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-house-tsunami"></i></div>
+                    <div class="tb-text">
+                        <h4>الكوارث الطبيعية</h4>
+                        <p>تغطي الفيضانات والعواصف والزلازل وغيرها</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-user-injured"></i></div>
+                    <div class="tb-text">
+                        <h4>تغطية الحوادث الشخصية</h4>
+                        <p>تغطي السائق والركاب</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-truck-pickup"></i></div>
+                    <div class="tb-text">
+                        <h4>المساعدة على الطريق على مدار الساعة</h4>
+                        <p>تشمل السحب والإطارات المتضررة وتوصيل الوقود وغيرها</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+
+            <div class="tb-row">
+                <div class="tb-right">
+                    <div class="tb-icon"><i class="fa-solid fa-shield-plus"></i></div>
+                    <div class="tb-text">
+                        <h4>خيارات التغطية الإضافية</h4>
+                        <p>تشمل حماية المحرك وتعويض قيمة الفاتورة وغيرها</p>
+                    </div>
+                </div>
+                <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+            </div>
+        </div>
+
+        <h2 class="section-title big-heading">عروض <span>و</span> خصومات<br />حصرية</h2>
+        <p class="section-subtitle blue-sub">خصومات وعروض من مجموعة متنوعة من المتاجر المحلية والعالمية لعملاء بي كير<br /> </p>
+
+        <div class="offer-tabs">
+            <div class="offer-tab">
+                <!-- يمكنك تغيير رابط صورة الصحة والجمال هنا -->
+                <img src="https://i.imgur.com/Dgsxwh6.png" alt="الصحة والجمال" />
+                الصحة والجمال
+            </div>
+            <div class="offer-tab active">
+                <!-- يمكنك تغيير رابط صورة خدمات السيارات هنا -->
+                <img src="https://i.imgur.com/cuaVHfO.png" alt="خدمات السيارات" />
+                خدمات السيارات
+            </div>
+            <div class="offer-tab">
+                <!-- يمكنك تغيير رابط صورة التسوق هنا -->
+                <img src="https://i.imgur.com/ZdBfdt3.png" alt="التسوق" />
+                التسوق
+            </div>
+            <div class="offer-tab">
+                <!-- يمكنك تغيير رابط صورة الفنادق والسفر هنا -->
+                <img src="https://i.imgur.com/feExaaj.png" alt="الفنادق والسفر" />
+                الفنادق والسفر
+            </div>
+            <div class="offer-tab">
+                <!-- يمكنك تغيير رابط صورة المطاعم والمقاهي هنا -->
+                <img src="https://i.imgur.com/LssS9mE.png" alt="المطاعم والمقاهي" />
+                المطاعم والمقاهي
+            </div>
+        </div>
+
+        <!-- ====== Offers Slider ====== -->
+        <div class="offers-slider">
+            <!-- Offer 1 -->
+            <div class="offer-card">
+                <!-- تم عكس الترتيب هنا لتكون الصورة على اليمين والكتابة على اليسار -->
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/85.png" alt="Speero" />
+                    <div class="offer-discount">10% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">سبيرو</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 2 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/116.png" alt="Logo2" />
+                    <div class="offer-discount">15% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">كلارو</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 3 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/124.png" alt="Logo3" />
+                    <div class="offer-discount">5% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">اطلبها</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 4 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/130.png" alt="Logo4" />
+                    <div class="offer-discount">25% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">منار العصرية لصيانة السيارات</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 5 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/131.png" alt="Logo5" />
+                    <div class="offer-discount">25% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">أخطبوط للعناية بالسيارة</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 6 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/148.png" alt="Logo6" />
+                    <div class="offer-discount">40% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">جيني</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+
+            <!-- Offer 7 -->
+            <div class="offer-card">
+                <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
+                    <img src="https://bcare.com.sa/assets/images/wareef_images/173.png" alt="Logo7" />
+                    <div class="offer-discount">40% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">مسمار</span></div>
+                </div>
+                <button class="btn-blue">عرض العرض</button>
+            </div>
+        </div>
+
+        <!-- العداد السفلي للعروض -->
+        <div style="text-align: center; font-weight: bold; color: var(--primary-blue); margin-bottom: 30px; font-size: 16px;">
+            <span id="current-offer-num">1</span>/<span id="total-offers-num">7</span>
+        </div>
+
+        <button class="btn-outline-blue" style="margin-bottom: 40px;">عرض المزيد من العروض</button>
+
+        <div class="safe-journey-wrap" id="safe-journey">
+            <h2 class="section-title big-heading">رحلة <span>آمنة</span> مع بي كير</h2>
+            <p class="section-subtitle blue-sub">إجابات واضحة ومتخصصة عن أسئلتك حول تأمين المركبات لمساعدتك على<br />فهم وثيقتك والتغطيات والمطالبات والمزيد.</p>
+
+            <div class="why-grid">
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <p>حدد موعد<br />تأمينك</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <p>أسعار أقل</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <p>خصص<br />تأمينك</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <p>خيارات<br />متنوعة</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-cubes"></i></div>
+                    <p>كل شيء في<br />مكان واحد</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-umbrella"></i></div>
+                    <p>مزايا تحميك</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-percent"></i></div>
+                    <p>خصومات<br />خاصة</p>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <p>ربط سريع</p>
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="section-title" id="guide-title">دليل <span>تأمين السيارات</span> ونصائح<br />التأمين الإلكتروني</h2>
+        <p class="section-subtitle" id="guide-subtitle">إجابات واضحة من خبرائنا عن أسئلتك حول تأمين السيارات، لمساعدتك على فهم وثيقتك والتغطيات والمطالبات وغيرها</p>
+
+        <div class="articles-list" id="articles-list">
+            <div class="article-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/blogs1.jpg" alt="" class="art-img" />
+                <div class="art-title">طريقة تأمين المركبة أونلاين | بي كير لوساطة التأمين</div>
+                <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+            </div>
+
+            <div class="article-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/blogs2.jpg" alt="" class="art-img" />
+                <div class="art-title">طريقة رفع تذكرة للدعم الفني | لملاحظاتكم في منصة بي كير</div>
+                <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+            </div>
+
+            <div class="article-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/blogs3.jpg" alt="" class="art-img" />
+                <div class="art-title">تأمين نقل الملكية | بي كير</div>
+                <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+            </div>
+
+            <div class="article-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/blogs4.jpg" alt="" class="art-img" />
+                <div class="art-title">بي كير | الانتظام في تجديد التأمين يرفع من استحقاقك لخدمة خصم "أحقية"</div>
+                <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+            </div>
+        </div>
+
+        <button class="btn-blue" style="width:calc(100% - 32px); margin:0 16px 40px;">تصفح جميع المقالات</button>
+
+        <!-- Individuals / Companies -->
+        <div class="target-tabs">
+            <button class="t-tab">شركات</button>
+            <button class="t-tab active">أفراد</button>
+        </div>
+
+        <div class="prod-grid">
+
+            <div class="prod-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/Squars/helpers-ar.jpg" alt="العمالة المنزلية" />
+                <div class="prod-card-content">
+                </div>
+            </div>
+
+            <div class="prod-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/Squars/travel-ar.jpg" alt="السفر" />
+                <div class="prod-card-content">
+                </div>
+            </div>
+
+            <div class="prod-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/Squars/motor-ar.jpg" alt="المركبات" />
+                <div class="prod-card-content">
+                </div>
+            </div>
+
+            <div class="prod-card">
+                <img src="https://bcare.com.sa/assets/images/newDesign/Squars/mmp-ar.jpg" alt="الأخطاء الطبية" />
+                <div class="prod-card-content">
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <h2 class="section-title">الأسئلة <span>الشائعة</span></h2>
+        <p class="section-subtitle">إجابات واضحة من خبرائنا عن أسئلتك حول تأمين السيارات، لمساعدتك على فهم وثيقتك والتغطيات والمطالبات وغيرها</p>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>وش الفرق بين التأمين ضد الغير والتأمين الشامل والمميز؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>ليش يختلف السعر من شخص للثاني، حتى لو كانت نفس السيارة؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>هل موقع بي كير آمن للدفع الإلكتروني؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>هل أقدر أقسط مبلغ التأمين؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>كيف ألغي الوثيقة وأسترجع فلوسي؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span>هل بي كير يذكرني قبل ما يخلص التأمين؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color:var(--text-gray);"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="floating-btns">
+            <button class="f-btn f-support"><i class="fa-solid fa-headset"></i></button>
+            <button class="f-btn f-up" onclick="window.scrollTo(0,0)"><i class="fa-solid fa-arrow-up"></i></button>
+        </div>
+
+    </div>
+
+<style>
+
+    .site-footer {
+        font-family: 'Tajawal', sans-serif;
+        background-color: #ffffff;
+        color: #333;
+        width: 100%;
+        border-top: 1px solid #f2f2f2;
+        padding-bottom: 20px;
+        direction: rtl;
+        box-sizing: border-box;
+    }
+    
+
+    .site-footer .footer-container {
+        width: 100%;
+        max-width: 1200px; 
+        margin: 0 auto;
+    }
+
+    .site-footer .logo-section {
+        padding: 20px;
+        text-align: right;
+        margin-bottom: 10px;
+    }
+    .site-footer .logo-section img {
+        width: 110px;
+    }
+
+    .site-footer .contact-section {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 20px 20px 20px;
+        color: #20709b;
+        font-weight: 700;
+        font-size: 19px;
+        gap: 10px;
+    }
+    .site-footer .contact-section span {
+        direction: ltr;
+    }
+    .site-footer .contact-section i {
+        font-size: 20px;
+    }
+
+    .site-footer .social-section {
+        padding: 0 20px 20px 20px;
+    }
+    .site-footer .social-section p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+    .site-footer .social-icons {
+        display: flex;
+        gap: 12px;
+    }
+    .site-footer .social-icons a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        background-color: #20709b;
+        color: #fff;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .site-footer .spacer {
+        height: 40px;
+    }
+
+    .site-footer .accordion {
+        border-top: 1px solid #f2f2f2;
+    }
+    .site-footer .accordion-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 20px;
+        border-bottom: 1px solid #f2f2f2;
+        color: #111;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .site-footer .accordion-item i {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .site-footer .payment-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+    }
+    .site-footer .payment-section p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+    .site-footer .payment-methods {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        flex-wrap: wrap;
+        direction: ltr;
+    }
+    .site-footer .payment-box {
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 4px 6px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .site-footer .pay-apple { color: #000; font-size: 13px; gap: 4px;}
+    .site-footer .pay-mastercard { display: flex; gap: -3px; }
+    .site-footer .pay-mastercard .red { width: 12px; height: 12px; background: #eb001b; border-radius: 50%; z-index: 1;}
+    .site-footer .pay-mastercard .yellow { width: 12px; height: 12px; background: #f79e1b; border-radius: 50%; margin-left: -5px; z-index: 2;}
+    .site-footer .pay-visa { color: #1a1f71; font-size: 13px; font-style: italic;}
+    .site-footer .pay-sadad { color: #f26f21; font-size: 12px;}
+    .site-footer .pay-mada { color: #000; display: flex; gap: 3px; font-size: 10px; align-items: center;}
+    .site-footer .pay-mada span { color: #00c651; font-weight: 800;}
+    .site-footer .pay-amex { background-color: #0070ce; color: #fff; padding: 2px 6px; border-radius: 2px;}
+    .site-footer .pay-tabby { background-color: #3eefc1; color: #000; padding: 2px 6px; border-radius: 2px; font-weight: normal;}
+
+    .site-footer .legal-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .site-footer .legal-links a {
+        color: #666;
+        text-decoration: none;
+    }
+    .site-footer .legal-links span {
+        color: #ccc;
+    }
+
+    .site-footer .copyright {
+        text-align: center;
+        padding: 15px 20px 20px;
+        font-size: 14px;
+        color: #888;
+        line-height: 1.6;
+    }
+</style>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- شعار الموقع -->
+        <div class="logo-section">
+            <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
+        </div>
+
+        <div class="contact-section">
+            <span dir="ltr">800 11 800 44</span>
+            <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <div class="social-section">
+            <p>تابعنا</p>
+            <div class="social-icons">
+                <a href="page1.html"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="page1.html"><i class="fa-brands fa-youtube"></i></a>
+                <a href="page1.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="page1.html"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <span>منتجات الأفراد</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="accordion-item">
+                <span>منتجات الشركات</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="accordion-item">
+                <span>مصادر</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="accordion-item">
+                <span>الشركة</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <p>طرق الدفع</p>
+            <div class="payment-methods">
+                <div class="payment-box pay-apple"><i class="fa-brands fa-apple"></i> Pay</div>
+                <div class="payment-box pay-mastercard">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                </div>
+                <div class="payment-box pay-visa">VISA</div>
+                <div class="payment-box pay-sadad">سداد</div>
+                <div class="payment-box pay-mada"><span>mada</span> مدى</div>
+                <div class="payment-box pay-amex">AMEX</div>
+                <div class="payment-box pay-tabby">tabby</div>
+            </div>
+        </div>
+
+        <div class="legal-links">
+            <a href="page1.html">سياسة الخصوصية</a>
+            <span>|</span>
+            <a href="page1.html">الشروط والأحكام</a>
+        </div>
+
+        <div class="copyright">
+            © 2026 شركة عناية الوسيط لوساطة التأمين. جميع الحقوق محفوظة.
+        </div>
+    </div>
+</footer>
+
+<!-- ====== سكربت تشغيل السلايدر وتغيير التبويبات ====== -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // ====== Top Banner Slider ======
+        const images = document.querySelectorAll('.slider-container .slider-img');
+        const topDots = document.querySelector('.sponsor-banner + .dots')?.querySelectorAll('.dot');
+        
+        let currentIndex = 0;
+        const totalImages = images.length;
+
+        if(totalImages > 0) {
+            function showNextImage() {
+                images[currentIndex].classList.remove('active');
+                if(topDots && topDots[currentIndex]) topDots[currentIndex].classList.remove('active');
+                
+                currentIndex = (currentIndex + 1) % totalImages;
+                
+                images[currentIndex].classList.add('active');
+                if(topDots && topDots[currentIndex]) topDots[currentIndex].classList.add('active');
+            }
+            setInterval(showNextImage, 3000);
+        }
+
+        // ====== Offers Slider Counter ======
+        const offersSlider = document.querySelector('.offers-slider');
+        const currentOfferNum = document.getElementById('current-offer-num');
+        const totalOffersNum = document.getElementById('total-offers-num');
+        
+        if (offersSlider) {
+            const offerCards = offersSlider.querySelectorAll('.offer-card');
+            if(totalOffersNum) totalOffersNum.textContent = offerCards.length;
+
+            offersSlider.addEventListener('scroll', () => {
+                const cardWidth = offersSlider.scrollWidth / offerCards.length;
+                const index = Math.round(offersSlider.scrollLeft / cardWidth);
+                const validIndex = Math.max(0, Math.min(index, offerCards.length - 1));
+                if(currentOfferNum) currentOfferNum.textContent = validIndex + 1;
+            });
+        }
+
+        // ====== Dynamic Tab Switching Logic ======
+        const tabs = document.querySelectorAll('.main-tab');
+        
+        // Elements to change
+        const heroTitle = document.getElementById('hero-title');
+        const heroSubtitle = document.getElementById('hero-subtitle');
+        const heroImg = document.getElementById('hero-img');
+        const tableImageContainer = document.getElementById('table-image-container');
+        const coverageTabs = document.getElementById('coverage-tabs');
+        const coverageInfo = document.getElementById('coverage-info');
+        const featuresTable = document.getElementById('features-table');
+        const safeJourney = document.getElementById('safe-journey');
+        const guideTitle = document.getElementById('guide-title');
+        const guideSubtitle = document.getElementById('guide-subtitle');
+        const articlesList = document.getElementById('articles-list');
+
+        // Save original (Vehicles) content
+        const originalContent = {
+            heroTitle: heroTitle.innerHTML,
+            heroSubtitle: heroSubtitle.innerHTML,
+            heroImgSrc: heroImg.src,
+            heroImgAlt: heroImg.alt,
+            tableImageContainer: tableImageContainer.innerHTML,
+            coverageTabsDisplay: coverageTabs.style.display || 'flex',
+            coverageTabsHTML: coverageTabs.innerHTML,
+            coverageInfo: coverageInfo.innerHTML,
+            featuresTable: featuresTable.innerHTML,
+            safeJourney: safeJourney.innerHTML,
+            guideTitle: guideTitle.innerHTML,
+            guideSubtitle: guideSubtitle.innerHTML,
+            articlesList: articlesList.innerHTML
+        };
+
+        // ====== دالة تبديل صور الأيقونات في التبويبات ======
+        // هذه الدالة تتحقق من كل تبويب وتستبدل الصورة حسب الحالة (نشط / غير نشط)
+        function updateTabIcons() {
+            tabs.forEach(tab => {
+                const img = tab.querySelector('img');
+                if (!img) return;
+                
+                const activeSrc = img.getAttribute('data-active-src');
+                const inactiveSrc = img.getAttribute('data-inactive-src');
+                
+                if (tab.classList.contains('active')) {
+                    // التبويب نشط - استخدم الصورة النشطة
+                    if (activeSrc && img.src !== activeSrc) {
+                        img.src = activeSrc;
+                    }
+                } else {
+                    // التبويب غير نشط - استخدم الصورة العادية
+                    if (inactiveSrc && img.src !== inactiveSrc) {
+                        img.src = inactiveSrc;
+                    }
+                }
+            });
+        }
+
+        // تفعيل الصور الصحيحة عند التحميل الأول
+        updateTabIcons();
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active class
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // تحديث صور الأيقونات بعد تغيير التبويب النشط
+                updateTabIcons();
+
+                const target = this.getAttribute('data-target');
+
+                if (target === 'medical') {
+                    // ================= MEDICAL ERRORS CONTENT =================
+                    heroTitle.innerHTML = 'احم <span>ممارستك الطبية</span> بثقة';
+                    heroSubtitle.innerHTML = 'تعرف على أبرز التغطيات التي يشملها عادة تأمين الأخطاء الطبية للممارسين الصحيين في المملكة العربية السعودية';
+                    heroImg.src = 'https://i.imgur.com/t0pFXEq.png'; 
+                    heroImg.alt = 'تأمين الأخطاء الطبية';
+                    tableImageContainer.innerHTML = '<img src="https://i.imgur.com/XDiPcrP.png" alt="Medical Table" />';
+                    coverageTabs.style.display = 'none';
+                    coverageInfo.innerHTML = `
+                        <h3>ما الذي يغطيه التأمين؟</h3>
+                        <p>يساعد تأمين الأخطاء الطبية على حماية الممارسين الصحيين المرخصين من المطالبات المستحقة الناتجة عن الأخطاء الطبية أو الإهمال أو التقصير أثناء أداء واجباتهم المهنية.<br><br>قد تشمل التغطية إصابة المريض أو وفاته، والتعويضات المحكوم بها قضائيا، وتكاليف الدفاع القانوني المعتمدة، والمسؤولية الناشئة عن تقديم العلاج الطبي الطارئ.<br><br>تعتمد التغطية الدقيقة وحدودها ومبالغ التحمل والاستثناءات على شركة التأمين المختارة وشروط وثيقة التأمين الصادرة.</p>
+                        <div class="dots"><span class="dot active"></span><span class="dot"></span></div>
+                    `;
+                    featuresTable.innerHTML = `
+                        <div class="tb-header"><span>الميزة</span><span>الوصف</span></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-user-doctor"></i></div><div class="tb-text"><h4>الأخطاء الطبية والإهمال</h4><p>تغطي المطالبات المؤهلة الناتجة عن الأخطاء المهنية أو الإهمال أو حالات السهو</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-heart-pulse"></i></div><div class="tb-text"><h4>إصابة المريض أو وفاته</h4><p>تغطي المسؤولية القانونية عن إصابة المريض أو مرضه أو وفاته نتيجة خطأ طبي مشمول بالتغطية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-gavel"></i></div><div class="tb-text"><h4>التعويضات الصادرة بحكم قضائي</h4><p>تغطي التعويضات التي يلتزم المؤمن له قانونيا بدفعها بموجب حكم قضائي نهائي</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-scale-balanced"></i></div><div class="tb-text"><h4>تكاليف الدفاع القانوني</h4><p>تغطي الرسوم والمصاريف القانونية المعتمدة للدفاع عن مطالبة مشمولة بالتغطية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-truck-medical"></i></div><div class="tb-text"><h4>العلاج الطبي الطارئ</h4><p>يغطي المسؤولية المهنية المؤهلة الناتجة عن تقديم الرعاية الطبية الطارئة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-headset"></i></div><div class="tb-text"><h4>دعم المطالبات</h4><p>يوفر الإرشاد والمساعدة خلال مراحل مراجعة المطالبة وتسويتها</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tb-text"><h4>الحماية من المسؤولية المالية</h4><p>تساعد في الحماية من التعويضات والمصاريف القانونية المشمولة بالتغطية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-user-md"></i></div><div class="tb-text"><h4>تغطية الممارس الصحي الفردية</h4><p>تحمي الممارسين الصحيين المرخصين والمؤهلين أثناء أداء مهامهم المهنية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-map-location-dot"></i></div><div class="tb-text"><h4>تغطية داخل المملكة العربية السعودية</h4><p>تغطي الأنشطة المهنية المؤهلة التي تتم ممارستها داخل المملكة العربية السعودية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                    `;
+                    safeJourney.querySelector('h2').innerHTML = 'احم <span>ممارستك الطبية</span> بثقة';
+                    safeJourney.querySelector('p').innerHTML = 'قارن خيارات تأمين الأخطاء الطبية المصممة لحماية الممارسين الصحيين من المطالبات والتكاليف القانونية والمسؤوليات المالية';
+                    guideTitle.innerHTML = 'دليل تأمين <span>الأخطاء الطبية</span>';
+                    guideSubtitle.innerHTML = 'دليل مفيد لفهم التغطية والحماية وكيفية إدارة وثيقتك';
+                    articlesList.innerHTML = `
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog1_mmp.jpg" alt="" class="art-img" /><div class="art-title">طريقة عمل تأمين الأخطاء الطبية أونلاين | بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog2_mmp.jpg" alt="" class="art-img" /><div class="art-title">الفرق بين التأمين الطبي وتأمين الأخطاء الطبية</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog3_mmp.jpg" alt="" class="art-img" /><div class="art-title">طريقة رفع تذكرة للدعم الفني | تأمين الأخطاء الطبية</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog4_mmp.jpg" alt="" class="art-img" /><div class="art-title">أهمية تأمين الأخطاء الطبية لكل ممارس صحي | بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                    `;
+
+                } else if (target === 'travel') {
+                    // ================= TRAVEL CONTENT =================
+                    heroTitle.innerHTML = 'اختر <span>التغطية</span> المناسبة لتأمين سفرك';
+                    heroSubtitle.innerHTML = 'قارن بين أبرز مزايا خطط تأمين السفر لدينا، واختر تغطية الوجهة التي تناسب رحلتك';
+                    heroImg.src = 'https://i.imgur.com/6MHfzdO.png'; 
+                    heroImg.alt = 'تأمين السفر';
+                    tableImageContainer.innerHTML = '<img src="https://i.imgur.com/OVGOoUy.png" alt="Travel Table" />';
+                    coverageTabs.style.display = 'flex';
+                    coverageTabs.innerHTML = `
+                        <button class="cov-tab">حول العالم باستثناء امريكا وكندا</button>
+                        <button class="cov-tab">حول العالم</button>
+                        <button class="cov-tab active">شنقن</button>
+                    `;
+                    coverageInfo.innerHTML = `
+                        <h3>ما الذي يغطيه التأمين؟</h3>
+                        <p>إذا كانت وجهتك أي دولة حول العالم باستثناء أمريكا وكندا، فهذي التغطية تعطيك الأساسيات اللي تحتاجها في سفرتك، مثل المصاريف الطبية الطارئة، والإخلاء الطبي، والمساعدة في العودة إلى الوطن، وغيرها من مزايا تأمين السفر.</p>
+                        <div class="dots"><span class="dot active"></span><span class="dot"></span></div>
+                    `;
+                    featuresTable.innerHTML = `
+                        <div class="tb-header"><span>الميزة</span><span>الوصف</span></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-notes-medical"></i></div><div class="tb-text"><h4>المصاريف الطبية الطارئة</h4><p>تغطي تكاليف العلاج الطبي غير المتوقع في الخارج</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-truck-medical"></i></div><div class="tb-text"><h4>الإخلاء الطبي الطارئ</h4><p>النقل الطارئ إلى أقرب مستشفى</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-plane-arrival"></i></div><div class="tb-text"><h4>المساعدة على العودة إلى الوطن</h4><p>المساعدة على العودة إلى الوطن عند الضرورة الطبية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-calendar-xmark"></i></div><div class="tb-text"><h4>إلغاء الرحلة أو اختصارها</h4><p>تغطي الرحلات الملغاة أو التي تم اختصار مدتها</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-clock"></i></div><div class="tb-text"><h4>تأخر الرحلة</h4><p>تعويض عن حالات تأخر الرحلات المشمولة بالتغطية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-suitcase-rolling"></i></div><div class="tb-text"><h4>تغطية فقدان الأمتعة</h4><p>تغطي فقدان الأمتعة أو سرقتها أو تأخر وصولها</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-passport"></i></div><div class="tb-text"><h4>المساعدة عند فقدان جواز السفر</h4><p>المساعدة وتغطية مصاريف استخراج بدل فاقد لجواز السفر</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-earth-europe"></i></div><div class="tb-text"><h4>متوافق مع متطلبات تأشيرة شنغن</h4><p>يستوفي متطلبات التأمين الخاصة بتأشيرة شنغن</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-flag-usa"></i></div><div class="tb-text"><h4>تغطية أمريكا وكندا</h4><p>تغطية تأمينية أثناء السفر في أمريكا وكندا</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                    `;
+                    safeJourney.querySelector('h2').innerHTML = 'سافر <span>بأمان</span> وثقة مع بي كير';
+                    safeJourney.querySelector('p').innerHTML = 'استمتع بحماية سفر شاملة مع تغطية عالمية وأسعار تنافسية وإصدار فوري وخيارات مرنة ودعم موثوق أينما ذهبت';
+                    guideTitle.innerHTML = 'دليل <span>تأمين السفر</span> ونصائح ذكية للسفر';
+                    guideSubtitle.innerHTML = 'اكتشف أحدث مقالات بي كير حول تغطيات تأمين السفر، والشراء الإلكتروني، ومزايا الوثيقة، والمطالبات، ونصائح عملية لرحلات أكثر أمانا';
+                    articlesList.innerHTML = `
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog1_Travel.jpg" alt="" class="art-img" /><div class="art-title">طريقة عمل تأمين السفر أونلاين | بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog2_Travel.jpg" alt="" class="art-img" /><div class="art-title">منافع تأمين السفر – بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog3_Travel.jpg" alt="" class="art-img" /><div class="art-title">الدليل شامل لتأمين السفر – بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card"><img src="https://bcare.com.sa/assets/images/newDesign/blog4_Travel.jpg" alt="" class="art-img" /><div class="art-title">تأمين السفر رفاهية أم استثمار؟</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                    `;
+
+                } else if (target === 'home') {
+                    // ================= DOMESTIC WORKERS CONTENT =================
+                    
+                    // 1. Update Hero Section
+                    heroTitle.innerHTML = 'اختر <span>التغطية</span> المناسبة للتأمين الصحي للعمالة المنزلية';
+                    heroSubtitle.innerHTML = 'قارن بين أبرز مزايا فئات التأمين الصحي للعمالة المنزلية، واختر التغطية التي تناسب احتياجات أسرتك';
+                    
+                    // مكان تغيير صورة الهيرو للعمالة المنزلية
+                    heroImg.src = 'https://i.imgur.com/UwyMuI7.png'; 
+                    heroImg.alt = 'التأمين الصحي للعمالة المنزلية';
+
+                    // 2. Update Table Image
+                    // مكان تغيير صورة الجدول للعمالة المنزلية
+                    tableImageContainer.innerHTML = '<img src="https://i.imgur.com/AkFN7TL.png" alt="Domestic Workers Table" />';
+
+                    // 3. Hide Coverage Tabs
+                    coverageTabs.style.display = 'none';
+
+                    // 4. Update Coverage Info
+                    coverageInfo.innerHTML = `
+                        <h3>ما الذي يغطيه التأمين؟</h3>
+                        <p>إذا كنت تدور على أعلى مستوى من التأمين الطبي فئة VIP هي الخيار المناسب لك تعطيك تغطية صحية أوسع، وحدود منافع أعلى، وإمكانية الوصول إلى شبكة طبية كبيرة تضم مستشفيات ومراكز وعيادات معتمدة، حسب شركة التأمين اللي تختارها وتناسب اللي يبي راحة أكثر عند العلاج ويبحث عن تغطية شاملة له ولعائلته أو لموظفي شركته.</p>
+                        <div class="dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                        </div>
+                    `;
+
+                    // 5. Update Features Table
+                    featuresTable.innerHTML = `
+                        <div class="tb-header">
+                            <span>الميزة</span>
+                            <span>الوصف</span>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-hospital"></i></div>
+                                <div class="tb-text">
+                                    <h4>شبكة المستشفيات والعيادات</h4>
+                                    <p>الوصول إلى مقدمي الخدمة والمنشآت الطبية المعتمدة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                                <div class="tb-text">
+                                    <h4>العيادات الخارجية</h4>
+                                    <p>الاستشارات والفحوصات المخبرية والأشعة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-bed-pulse"></i></div>
+                                <div class="tb-text">
+                                    <h4>التنويم والعمليات الجراحية</h4>
+                                    <p>التنويم في المستشفى والعلاج الجراحي</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-truck-medical"></i></div>
+                                <div class="tb-text">
+                                    <h4>العلاج الطارئ</h4>
+                                    <p>الرعاية الطبية العاجلة والدخول إلى قسم الطوارئ</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-baby"></i></div>
+                                <div class="tb-text">
+                                    <h4>الأمومة والولادة</h4>
+                                    <p>تغطية متابعة الحمل والولادة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-tooth"></i></div>
+                                <div class="tb-text">
+                                    <h4>مزايا علاج الأسنان</h4>
+                                    <p>علاجات الأسنان من الأساسية إلى المتقدمة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-glasses"></i></div>
+                                <div class="tb-text">
+                                    <h4>مزايا البصريات</h4>
+                                    <p>خدمات فحص النظر والنظارات الطبية</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                                <div class="tb-text">
+                                    <h4>رعاية الأمراض المزمنة</h4>
+                                    <p>دعم الحالات الطبية المستمرة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                        <div class="tb-row">
+                            <div class="tb-right">
+                                <div class="tb-icon"><i class="fa-solid fa-syringe"></i></div>
+                                <div class="tb-text">
+                                    <h4>تغطية التطعيمات</h4>
+                                    <p>تغطية اللقاحات الوقائية المعتمدة</p>
+                                </div>
+                            </div>
+                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
+                        </div>
+                    `;
+
+                    // 6. Update Safe Journey Section
+                    safeJourney.querySelector('h2').innerHTML = 'وفر التأمين الصحي لعمالتك المنزلية مع بي كير';
+                    safeJourney.querySelector('p').innerHTML = 'قارن خطط التأمين الصحي الموثوقة، واختر التغطية المناسبة، ووفر الحماية لعمالتك المنزلية من خلال خدمات إلكترونية سهلة';
+
+                    // 7. Update Guide Section
+                    guideTitle.innerHTML = 'دليل التأمين الصحي للعمالة المنزلية';
+                    guideSubtitle.innerHTML = 'أدلة مبسطة تساعدك على فهم التغطيات، ومقارنة الخيارات، وتأمين عمالتك المنزلية بثقة';
+
+                    // 8. Update Articles List
+                    // مكان تغيير صور المقالات للعمالة المنزلية
+                    articlesList.innerHTML = `
+                        <div class="article-card">
+                            <img src="https://bcare.com.sa/assets/images/newDesign/blog1_helpers.jpg" alt="" class="art-img" />
+                            <div class="art-title">طريقة تأمين العمالة المنزلية أونلاين | بي كير لوساطة التأمين</div>
+                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                        </div>
+                        <div class="article-card">
+                            <img src="https://bcare.com.sa/assets/images/newDesign/blog2_helpers.jpg" alt="" class="art-img" />
+                            <div class="art-title">الدليل الشامل لتأمين العمالة المنزلية – بي كير</div>
+                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                        </div>
+                        <div class="article-card">
+                            <img src="https://bcare.com.sa/assets/images/newDesign/blog3_helpers.jpg" alt="" class="art-img" />
+                            <div class="art-title">التأمين الصحي للعمالة المنزلية</div>
+                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                        </div>
+                        <div class="article-card">
+                            <img src="https://bcare.com.sa/assets/images/newDesign/blog4_helpers.jpg" alt="" class="art-img" />
+                            <div class="art-title">أهم الأسئلة الشائعة عن تأمين العمالة المنزلية – بي كير</div>
+                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                        </div>
+                    `;
+
+                } else {
+                    // ================= RESTORE ORIGINAL CONTENT (VEHICLES) =================
+                    heroTitle.innerHTML = originalContent.heroTitle;
+                    heroSubtitle.innerHTML = originalContent.heroSubtitle;
+                    heroImg.src = originalContent.heroImgSrc;
+                    heroImg.alt = originalContent.heroImgAlt;
+                    tableImageContainer.innerHTML = originalContent.tableImageContainer;
+                    coverageTabs.style.display = originalContent.coverageTabsDisplay;
+                    coverageTabs.innerHTML = originalContent.coverageTabsHTML;
+                    coverageInfo.innerHTML = originalContent.coverageInfo;
+                    featuresTable.innerHTML = originalContent.featuresTable;
+                    safeJourney.innerHTML = originalContent.safeJourney;
+                    guideTitle.innerHTML = originalContent.guideTitle;
+                    guideSubtitle.innerHTML = originalContent.guideSubtitle;
+                    articlesList.innerHTML = originalContent.articlesList;
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

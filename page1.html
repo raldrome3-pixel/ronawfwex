@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأمين السيارات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-section {
+            background-color: #1a6396;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px 80px;
+            box-sizing: border-box;
+        }
+
+        .header-section h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .header-section p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            width: 92%;
+            max-width: 480px;
+            border-radius: 12px;
+            margin-top: -40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            z-index: 10;
+            margin-bottom: 100px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background-color: #1a6396;
+            color: #ffffff;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #1a6396;
+        }
+
+        .form-control::placeholder {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        /* إخفاء أسهم حقول الأرقام في المتصفحات */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield; 
+        }
+
+        .radio-group {
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .radio-option {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .radio-option.active {
+            background-color: #1a6396;
+            color: #ffffff;
+            border-radius: 8px;
+            margin: -1px;
+            border: 1px solid #1a6396;
+        }
+
+        .radio-circle {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #fff;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .radio-option.active .radio-circle,
+        .offer-card.active .radio-circle {
+            border-color: #f7b260;
+        }
+        
+        .radio-option.active .radio-circle::after,
+        .offer-card.active .radio-circle::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #f7b260;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .input-icon-container {
+            position: relative;
+        }
+
+        .input-icon-container .icon-left {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            background: #f0f0f0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-style: italic;
+            font-family: serif;
+            font-weight: bold;
+        }
+        
+        .captcha-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .captcha-container input {
+            padding-right: 15px; 
+            padding-left: 120px;
+            height: 50px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: right; 
+        }
+        
+        .captcha-image {
+            position: absolute;
+            left: 45px; 
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 26px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            pointer-events: none; 
+            direction: ltr; 
+        }
+        
+        .captcha-image span:nth-child(1) { color: #1500ff; text-decoration: underline; font-style: italic;}
+        .captcha-image span:nth-child(2) { color: #c44000; text-decoration: underline; }
+        .captcha-image span:nth-child(3) { color: #1500ff; }
+        .captcha-image span:nth-child(4) { color: #d67a29; }
+
+        .captcha-refresh {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .captcha-refresh:active {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .agreement {
+            margin-top: 25px;
+            margin-bottom: 20px;
+            font-size: 13.5px;
+            color: #666;
+            text-align: center;
+            line-height: 1.7;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #f7b260;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* تنسيق أقسام العروض */
+        .section-title {
+            color: #1a6396;
+            font-size: 15px;
+            font-weight: 800;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #eef3f7;
+            padding-bottom: 6px;
+        }
+
+        .offer-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #ffffff;
+        }
+
+        .offer-card:hover {
+            border-color: #1a6396;
+        }
+        
+        .offer-card.active {
+            border-color: #1a6396;
+            background-color: #f0f7fc;
+            box-shadow: 0 2px 10px rgba(26,99,150,0.1);
+        }
+
+        .offer-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offer-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .offer-subtitle {
+            font-size: 11px;
+            color: #777;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .offer-price {
+            font-weight: 900;
+            font-size: 16px;
+            color: #1a6396;
+            direction: rtl;
+            white-space: nowrap;
+        }
+
+        .offer-price span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .offers-header {
+            text-align: center;
+            color: #1a6396;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .fab {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
+        .fab-support { background-color: #f7b260; }
+        .fab-up { background-color: #1a6396; }
+
+        /* حاوية الفوتر الأساسية */
+        .site-footer {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            width: 100%;
+            border-top: 1px solid #f2f2f2;
+            padding-bottom: 20px;
+            direction: rtl;
+            box-sizing: border-box;
+        }
+
+        .site-footer .footer-container {
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+
+        .site-footer .logo-section {
+            padding: 20px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .site-footer .logo-section img {
+            width: 110px;
+        }
+
+        .site-footer .contact-section {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            color: #20709b;
+            font-weight: 700;
+            font-size: 19px;
+            gap: 10px;
+        }
+        .site-footer .contact-section span {
+            direction: ltr;
+        }
+        .site-footer .contact-section i {
+            font-size: 20px;
+        }
+
+        .site-footer .social-section {
+            padding: 0 20px 20px 20px;
+        }
+        .site-footer .social-section p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .site-footer .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+        .site-footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: #20709b;
+            color: #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .site-footer .spacer {
+            height: 40px;
+        }
+
+        .site-footer .accordion {
+            border-top: 1px solid #f2f2f2;
+        }
+        .site-footer .accordion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #f2f2f2;
+            color: #111;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .site-footer .accordion-item i {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .site-footer .payment-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .site-footer .payment-section p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .site-footer .payment-methods {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+            direction: ltr;
+        }
+        .site-footer .payment-box {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 4px 6px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .site-footer .pay-apple { color: #000; font-size: 13px; gap: 4px;}
+        .site-footer .pay-mastercard { display: flex; gap: -3px; }
+        .site-footer .pay-mastercard .red { width: 12px; height: 12px; background: #eb001b; border-radius: 50%; z-index: 1;}
+        .site-footer .pay-mastercard .yellow { width: 12px; height: 12px; background: #f79e1b; border-radius: 50%; margin-left: -5px; z-index: 2;}
+        .site-footer .pay-visa { color: #1a1f71; font-size: 13px; font-style: italic;}
+        .site-footer .pay-sadad { color: #f26f21; font-size: 12px;}
+        .site-footer .pay-mada { color: #000; display: flex; gap: 3px; font-size: 10px; align-items: center;}
+        .site-footer .pay-mada span { color: #00c651; font-weight: 800;}
+        .site-footer .pay-amex { background-color: #0070ce; color: #fff; padding: 2px 6px; border-radius: 2px;}
+        .site-footer .pay-tabby { background-color: #3eefc1; color: #000; padding: 2px 6px; border-radius: 2px; font-weight: normal;}
+
+        .site-footer .legal-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .site-footer .legal-links a {
+            color: #666;
+            text-decoration: none;
+        }
+        .site-footer .legal-links span {
+            color: #ccc;
+        }
+
+        .site-footer .copyright {
+            text-align: center;
+            padding: 15px 20px 20px;
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>المنصة الأذكى لمقارنة عروض تأمين<br>السيارات في السعودية</h1>
+        <p>المنصة الأذكى لمقارنة عروض أكثر من 20 شركة تأمين. احصل<br>على أرخص تأمين سيارات مع إصدار فوري وربط مباشر بنجم.</p>
+    </div>
+
+    <!-- النموذج الرئيسي -->
+    <div class="form-container" id="main-form">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(this)">تأمين جديد</div>
+            <div class="tab" onclick="switchTab(this)">نقل ملكية</div>
+        </div>
+        
+        <div class="form-content">
+            <!-- رقم الهوية / الإقامة -->
+            <div class="form-group">
+                <label>رقم الهوية / الإقامة</label>
+                <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
+                <input type="number" inputmode="numeric" id="id-input" class="form-control" placeholder="رقم الهوية أو الإقامة" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
+            </div>
+
+            <!-- رقم الجوال -->
+            <div class="form-group">
+                <label>رقم الجوال</label>
+                <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
+                <input type="number" inputmode="numeric" id="phone-input" class="form-control" placeholder="05XXXXXXXX" dir="ltr" style="text-align: right;" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
+            </div>
+
+            <div class="radio-group">
+                <div class="radio-option active" onclick="switchRadio(this)">
+                    <span class="radio-circle"></span> استمارة
+                </div>
+                <div class="radio-option" onclick="switchRadio(this)">
+                    <span class="radio-circle"></span> بطاقة جمركية
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>الرقم التسلسلي</label>
+                <div class="input-icon-container">
+                    <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" -->
+                    <input type="number" inputmode="numeric" class="form-control" placeholder="الرقم التسلسلي">
+                    <div class="icon-left">i</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>رمز التحقق</label>
+                <div class="captcha-container">
+                    <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
+                    <input type="number" inputmode="numeric" id="captcha-input" class="form-control" style="background-color: white;" placeholder="" dir="ltr" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);">
+                    <div class="captcha-image" id="captcha-display">
+                        <span style="color:#1500ff; text-decoration:underline; font-style:italic;">5</span>
+                        <span style="color:#c44000; text-decoration:underline;">0</span>
+                        <span style="color:#1500ff;">3</span>
+                        <span style="color:#d67a29;">8</span>
+                    </div>
+                    <i class="fas fa-sync-alt captcha-refresh" onclick="generateNewCaptcha()" title="تحديث الرمز"></i>
+                </div>
+            </div>
+
+            <div class="agreement">
+                أوافق على منح شركة عناية الوسيط الحق في<br>الاستعلام من شركة نجم و/أو مركز المعلومات<br>الوطني عن بياناتي
+            </div>
+
+            <button class="submit-btn" onclick="validateAndSubmit()">إظهار العروض</button>
+        </div>
+    </div>
+
+    <!-- قسم قائمة العروض والتفاصيل -->
+    <div class="form-container" id="offers-section" style="display: none; padding: 25px 20px;">
+        <h2 class="offers-header">اختر العرض المناسب</h2>
+        
+        <!-- القسم الأول: متوسط السعر الابتدائي (ضد الغير) -->
+        <div class="section-title">1. متوسط السعر الابتدائي (ضد الغير)</div>
+        
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div class="offer-title">شركة التأمين التعاونية</div>
+            </div>
+            <div class="offer-price">650 - 700 <span>ر.س</span></div>
+        </div>
+        
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div class="offer-title">ميدغلف</div>
+            </div>
+            <div class="offer-price">660 - 750 <span>ر.س</span></div>
+        </div>
+
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div class="offer-title">تكافل الراجحي</div>
+            </div>
+            <div class="offer-price">650 - 700 <span>ر.س</span></div>
+        </div>
+
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div class="offer-title">ولاء / أسيج</div>
+            </div>
+            <div class="offer-price">700 - 750 <span>ر.س</span></div>
+        </div>
+
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div class="offer-title">الخليجية المتحدة / اتحاد الخليج</div>
+            </div>
+            <div class="offer-price">890 - 900 <span>ر.س</span></div>
+        </div>
+
+        <!-- القسم الثاني: متوسط سعر التأمين الشامل السنوي -->
+        <div class="section-title" style="margin-top: 30px;">2. متوسط سعر التأمين الشامل السنوي</div>
+        
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div>
+                    <div class="offer-title">سيارات اقتصادية / مستعملة</div>
+                    <div class="offer-subtitle">(بقيمة 30,000 - 50,000 ريال)</div>
+                </div>
+            </div>
+            <div class="offer-price">1,200 - 2,200 <span>ر.س</span></div>
+        </div>
+
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div>
+                    <div class="offer-title">سيارات متوسطة / جديدة</div>
+                    <div class="offer-subtitle">(بقيمة 60,000 - 100,000 ريال)</div>
+                </div>
+            </div>
+            <div class="offer-price">2,200 - 3,800 <span>ر.س</span></div>
+        </div>
+
+        <div class="offer-card" onclick="selectOffer(this)">
+            <div class="offer-details">
+                <span class="radio-circle"></span>
+                <div>
+                    <div class="offer-title">سيارات فارهة / عائلية كبيرة</div>
+                    <div class="offer-subtitle">(بقيمة 120,000 - 200,000 ريال)</div>
+                </div>
+            </div>
+            <div class="offer-price">4,000 - 7,500+ <span>ر.س</span></div>
+        </div>
+
+        <button class="submit-btn" onclick="confirmOffer()" style="margin-top: 20px;">تأكيد الاختيار</button>
+    </div>
+
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <div class="fab fab-support">
+            <i class="fas fa-headset"></i>
+        </div>
+        <div class="fab fab-up" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="logo-section">
+                <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
+            </div>
+
+            <!-- رقم التواصل -->
+            <div class="contact-section">
+                <span dir="ltr">800 11 800 44</span>
+                <i class="fa-solid fa-phone"></i>
+            </div>
+
+            <div class="social-section">
+                <p>تابعنا</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <span>منتجات الأفراد</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>منتجات الشركات</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>مصادر</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-item">
+                    <span>الشركة</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <p>طرق الدفع</p>
+                <div class="payment-methods">
+                    <div class="payment-box pay-apple"><i class="fa-brands fa-apple"></i> Pay</div>
+                    <div class="payment-box pay-mastercard">
+                        <div class="red"></div>
+                        <div class="yellow"></div>
+                    </div>
+                    <div class="payment-box pay-visa">VISA</div>
+                    <div class="payment-box pay-sadad">سداد</div>
+                    <div class="payment-box pay-mada"><span>mada</span> مدى</div>
+                    <div class="payment-box pay-amex">AMEX</div>
+                    <div class="payment-box pay-tabby">tabby</div>
+                </div>
+            </div>
+
+            <div class="legal-links">
+                <a href="#">سياسة الخصوصية</a>
+                <span>|</span>
+                <a href="#">الشروط والأحكام</a>
+            </div>
+
+            <div class="copyright">
+                © 2026 شركة عناية الوسيط لوساطة التأمين. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentCaptchaCode = "5038";
+        let isOfferSelected = false; 
+        let selectedOfferDetails = {}; 
+
+        function switchTab(element) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        function switchRadio(element) {
+            document.querySelectorAll('.radio-option').forEach(radio => {
+                radio.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        function generateNewCaptcha() {
+            const chars = '0123456789';
+            let newCode = '';
+            const displayDiv = document.getElementById('captcha-display');
+            displayDiv.innerHTML = ''; 
+
+            const colors = ['#1500ff', '#c44000', '#2e7d32', '#d67a29', '#6a1b9a'];
+            const styles = ['normal', 'italic'];
+            const decorations = ['none', 'underline', 'line-through'];
+
+            for (let i = 0; i < 4; i++) {
+                const randomChar = chars.charAt(Math.floor(Math.random() * chars.length));
+                newCode += randomChar;
+                
+                const span = document.createElement('span');
+                span.textContent = randomChar;
+                
+                span.style.color = colors[Math.floor(Math.random() * colors.length)];
+                span.style.fontStyle = styles[Math.floor(Math.random() * styles.length)];
+                span.style.textDecoration = decorations[Math.floor(Math.random() * decorations.length)];
+                
+                displayDiv.appendChild(span);
+            }
+            
+            currentCaptchaCode = newCode;
+            document.getElementById('captcha-input').value = ''; 
+            document.getElementById('captcha-input').focus();
+        }
+
+        function validateAndSubmit() {
+            const idInput = document.getElementById('id-input').value.trim();
+            const phoneInput = document.getElementById('phone-input').value.trim();
+            const userInput = document.getElementById('captcha-input').value.trim();
+            
+            // التحقق من رقم الهوية (10 أرقام وتبدأ بـ 1 أو 2)
+            const idRegex = /^[12]\d{9}$/;
+            if (!idRegex.test(idInput)) {
+                alert("يرجى إدخال رقم هوية أو إقامة صحيح يتكون من 10 أرقام ويبدأ بـ 1 أو 2.");
+                return;
+            }
+
+            // التحقق من رقم الجوال (10 أرقام وتبدأ بـ 05)
+            const phoneRegex = /^05\d{8}$/;
+            if (!phoneRegex.test(phoneInput)) {
+                alert("يرجى إدخال رقم جوال صحيح يجب ان يتكون من 10 أرقام ويبدأ بـ 05.");
+                return;
+            }
+
+            // التحقق من كود التحقق
+            if (userInput === "") {
+                alert("يرجى إدخال رمز التحقق أولاً.");
+                return;
+            }
+
+            if (userInput === currentCaptchaCode) {
+                // إخفاء النموذج الرئيسي وإظهار قسم العروض
+                document.getElementById('main-form').style.display = 'none';
+                document.getElementById('offers-section').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                alert("رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى.");
+                generateNewCaptcha();
+            }
+        }
+
+        function selectOffer(element) {
+            document.querySelectorAll('.offer-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            element.classList.add('active');
+            isOfferSelected = true;
+
+            const offerTitle = element.querySelector('.offer-title').innerText;
+            const offerPrice = element.querySelector('.offer-price').innerText.replace('ر.س', '').trim();
+
+            selectedOfferDetails = {
+                title: offerTitle,
+                price: offerPrice
+            };
+        }
+
+        function confirmOffer() {
+            if (!isOfferSelected) {
+                alert("يرجى اختيار أحد العروض أولاً للمتابعة.");
+                return;
+            }
+            
+            localStorage.setItem('selectedInsuranceOffer', JSON.stringify(selectedOfferDetails));
+            window.location.href = "pay.html"; 
+        }
+    </script>
+</body>
+</html>
