@@ -457,6 +457,9 @@
             background: var(--white);
             position: relative;
             box-sizing: border-box;
+            display: flex;             /* تمت الإضافة لجعل البطاقة flex container */
+            flex-direction: column;      /* تمت الإضافة لترتيب العناصر عمودياً */
+            justify-content: space-between; /* تمت الإضافة لتوزيع المساحة */
         }
 
         /* ====== مكان تغيير حجم الصور داخل بطاقات العروض (سبيرو، جيني، إلخ) ====== */
@@ -490,6 +493,11 @@
             border-radius: 8px;
             font-weight: 700;
             font-size: 15px;
+        }
+
+        /* تمت الإضافة: زر عرض العرض داخل بطاقة العرض يثبت في الأسفل */
+        .offer-card .btn-blue {
+            margin-top: auto;
         }
 
         .btn-outline-blue {
@@ -1832,3 +1840,4 @@
 
 </body>
 </html>
+```
