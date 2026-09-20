@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>بي كير | المنصة الأذكى والأرخص للتأمين</title>
+    <title>بي كير | تأمين المركبات</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
@@ -78,6 +78,7 @@
             color: var(--primary-blue);
             font-size: 16px;
             background: var(--white);
+            cursor: pointer;
         }
 
         .profile-icon {
@@ -130,10 +131,9 @@
             transition: all 0.2s ease;
         }
 
-        /* ====== مكان تغيير حجم أيقونات التبويبات الرئيسية (المركبات، الأخطاء الطبية، السفر، العمالة المنزلية) ====== */
         .main-tab img {
-            width: 28px; /* تم تكبير الحجم من 18px إلى 28px */
-            height: 28px; /* تم تكبير الحجم من 18px إلى 28px */
+            width: 28px;
+            height: 28px;
             object-fit: contain;
         }
 
@@ -141,11 +141,6 @@
             background-color: var(--primary-blue);
             color: var(--white);
             border-color: var(--primary-blue);
-        }
-
-        /* تم إلغاء الفلتر لأننا سنستبدل الصورة نفسها عبر الجافاسكريبت */
-        .main-tab.active img {
-            /* filter: brightness(0) invert(1); */
         }
 
 
@@ -414,10 +409,9 @@
             white-space: nowrap;
         }
 
-        /* ====== مكان تغيير حجم أيقونات تبويبات العروض (الصحة والجمال، خدمات السيارات، التسوق، الفنادق، المطاعم) ====== */
         .offer-tab img {
-            width: 30px; /* تم تكبير الحجم من 20px إلى 30px */
-            height: 30px; /* تم تكبير الحجم من 20px إلى 30px */
+            width: 30px;
+            height: 30px;
             object-fit: contain;
         }
 
@@ -430,7 +424,6 @@
             filter: brightness(0) invert(1);
         }
 
-        /* ====== Offer Slider Styles ====== */
         .offers-slider {
             display: flex;
             overflow-x: auto;
@@ -457,25 +450,23 @@
             background: var(--white);
             position: relative;
             box-sizing: border-box;
-            display: flex;             /* تمت الإضافة لجعل البطاقة flex container */
-            flex-direction: column;      /* تمت الإضافة لترتيب العناصر عمودياً */
-            justify-content: space-between; /* تمت الإضافة لتوزيع المساحة */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* ====== مكان تغيير حجم الصور داخل بطاقات العروض (سبيرو، جيني، إلخ) ====== */
         .offer-card img {
-            height: 75px; /* تم تكبير الحجم من 50px إلى 75px (أكبر بمرة ونصف) */
+            height: 75px;
             object-fit: contain;
             margin-bottom: 10px;
         }
 
-        /* ====== مكان تغيير حجم خط الخصم في بطاقات العروض ====== */
         .offer-discount {
-            font-size: 36px; /* تم تكبير الحجم من 24px إلى 36px */
+            font-size: 36px;
             font-weight: 900;
             color: var(--primary-blue);
             margin-bottom: 4px;
-            text-align: center; /* لضمان توسيط النص */
+            text-align: center;
         }
 
         .offer-name {
@@ -493,9 +484,9 @@
             border-radius: 8px;
             font-weight: 700;
             font-size: 15px;
+            cursor: pointer;
         }
 
-        /* تمت الإضافة: زر عرض العرض داخل بطاقة العرض يثبت في الأسفل */
         .offer-card .btn-blue {
             margin-top: auto;
         }
@@ -512,6 +503,7 @@
             font-size: 15px;
             text-align: center;
             display: block;
+            cursor: pointer;
         }
 
         .why-grid {
@@ -788,7 +780,6 @@
             padding-bottom: 16px;
         }
 
-        /* ====== Slider Styles ====== */
         .slider-container {
             position: relative;
             width: 100%;
@@ -810,11 +801,12 @@
         }
 
         /* ====== Article Page Styles ====== */
-        #article-page {
+        #article-page, #offer-detail-page, #all-offers-page, #all-articles-page {
             display: none;
         }
 
-        .article-page-container {
+        .article-page-container,
+        .subpage-container {
             max-width: 480px;
             margin: 0 auto;
             background-color: var(--white);
@@ -823,17 +815,26 @@
             padding-bottom: 20px;
         }
 
-        .article-page-hero {
+        .article-page-hero,
+        .subpage-hero {
             padding: 24px 20px 6px;
             text-align: center;
             background: linear-gradient(to bottom, #eaf4fb 0%, #ffffff 100%);
         }
 
-        .article-page-hero h1 {
+        .article-page-hero h1,
+        .subpage-hero h1 {
             font-size: 27px;
             font-weight: 900;
             color: var(--primary-blue);
             line-height: 1.5;
+        }
+
+        .subpage-hero p {
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
         .article-page-img {
@@ -897,6 +898,246 @@
             font-weight: 800;
             cursor: pointer;
         }
+
+        /* ====== Offer Detail Page Styles ====== */
+        .offer-detail-card {
+            margin: 16px;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(22, 91, 149, 0.06);
+        }
+
+        .offer-detail-logo {
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+
+        .offer-detail-discount {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1.1;
+        }
+
+        .offer-detail-brand {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-top: 4px;
+            margin-bottom: 16px;
+        }
+
+        .offer-detail-category {
+            display: inline-block;
+            background: #eaf4fb;
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .offer-detail-info {
+            margin: 0 16px 20px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .offer-detail-info h3 {
+            color: var(--primary-blue);
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .offer-detail-info p {
+            font-size: 14px;
+            line-height: 1.85;
+            color: #4b5563;
+        }
+
+        .offer-detail-features {
+            margin: 0 16px 20px;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .offer-detail-features .of-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .offer-detail-features .of-row:last-child {
+            border-bottom: none;
+        }
+
+        .offer-detail-features .of-icon {
+            width: 30px;
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 17px;
+        }
+
+        .offer-detail-features .of-text {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .offer-detail-terms {
+            margin: 0 16px 24px;
+            font-size: 12.5px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            padding: 14px;
+            background: #fffbf4;
+            border: 1px dashed #f2c98a;
+            border-radius: 10px;
+        }
+
+        .btn-get-offer {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 0 16px 30px;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent-orange);
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 900;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* ====== All Offers Page (2 columns) ====== */
+        .offers-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .offer-tile {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .offer-tile:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(22, 91, 149, 0.12);
+        }
+
+        .offer-tile img {
+            width: 100%;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .offer-tile-discount {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1.2;
+        }
+
+        .offer-tile-brand {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* ====== All Articles Page (1 column) ====== */
+        .all-articles-list {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* ====== Footer accordion content ====== */
+        .site-footer .accordion-item {
+            display: block;
+            padding: 0;
+        }
+
+        .site-footer .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            cursor: pointer;
+            color: #111;
+            font-size: 15px;
+        }
+
+        .site-footer .accordion-header i {
+            color: #777;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .site-footer .accordion-item.open .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        .site-footer .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: #f9fafb;
+        }
+
+        .site-footer .accordion-item.open .accordion-content {
+            max-height: 520px;
+        }
+
+        .site-footer .accordion-content ul {
+            list-style: none;
+            padding: 6px 20px 14px;
+            margin: 0;
+        }
+
+        .site-footer .accordion-content li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .site-footer .accordion-content li:last-child {
+            border-bottom: none;
+        }
+
+        .site-footer .accordion-content a {
+            color: #20709b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -917,12 +1158,6 @@
 
         <div class="main-tabs">
             <button class="main-tab active" data-target="vehicles">
-                <!-- 
-                  ====== تغيير صورة أيقونة تبويب المركبات ======
-                  data-inactive-src : الصورة في الوضع العادي (غير نشط)
-                  data-active-src   : الصورة عند النقر (نشط)
-                  استبدل الرابطين بالصور التي تريدها
-                -->
                 <img 
                     src="https://i.imgur.com/Eg7lbdY.png" 
                     data-inactive-src="https://i.imgur.com/TbchfN8.png" 
@@ -931,9 +1166,6 @@
                 <span>المركبات</span>
             </button>
             <button class="main-tab" data-target="medical">
-                <!-- 
-                  ====== تغيير صورة أيقونة تبويب الأخطاء الطبية ======
-                -->
                 <img 
                     src="https://i.imgur.com/TtuUh5T.png" 
                     data-inactive-src="https://i.imgur.com/TtuUh5T.png" 
@@ -942,9 +1174,6 @@
                 <span>الأخطاء الطبية</span>
             </button>
             <button class="main-tab" data-target="travel">
-                <!-- 
-                  ====== تغيير صورة أيقونة تبويب السفر ======
-                -->
                 <img 
                     src="https://i.imgur.com/7GX7yjF.png" 
                     data-inactive-src="https://i.imgur.com/7GX7yjF.png" 
@@ -953,9 +1182,6 @@
                 <span>السفر</span>
             </button>
             <button class="main-tab" data-target="home">
-                <!-- 
-                  ====== تغيير صورة أيقونة تبويب العمالة المنزلية ======
-                -->
                 <img 
                     src="https://i.imgur.com/OngGilB.png" 
                     data-inactive-src="https://i.imgur.com/OngGilB.png" 
@@ -970,14 +1196,10 @@
             <a href="page1.html" class="btn-primary">طلب العروض</a>
         </section>
 
-        <!-- ====== بداية السلايدر (تم استبدال الصورة الثابتة) ====== -->
         <div class="sponsor-banner" style="margin-bottom: 10px;">
             <div class="slider-container">
-                <!-- ضع رابط الصورة الأولى هنا -->
                 <img src="https://bcare.com.sa/assets/images/newDesign/roshnmob.jpg" alt="Slide 1" class="slider-img active" />
-                <!-- ضع رابط الصورة الثانية هنا -->
                 <img src="https://i.imgur.com/hlsBKZj.png" alt="Slide 2" class="slider-img" />
-                <!-- ضع رابط الصورة الثالثة هنا -->
                 <img src="https://i.imgur.com/i8Sr98J.png" alt="Slide 3" class="slider-img" />
             </div>
         </div>
@@ -986,7 +1208,6 @@
             <span class="dot"></span>
             <span class="dot"></span>
         </div>
-        <!-- ====== نهاية السلايدر ====== -->
 
         <h2 class="section-title main-coverage-title" id="hero-title">التغطية المناسبة<br /><span>لتأمين</span> سيارتك</h2>
         <p class="section-subtitle main-coverage-subtitle" id="hero-subtitle">قارن بين أبرز مزايا أنواع تأمين السيارات الثلاثة، واختر التغطية التي تناسب احتياجاتك وميزانيتك</p>
@@ -1110,105 +1331,90 @@
 
         <div class="offer-tabs">
             <div class="offer-tab">
-                <!-- يمكنك تغيير رابط صورة الصحة والجمال هنا -->
                 <img src="https://i.imgur.com/Dgsxwh6.png" alt="الصحة والجمال" />
                 الصحة والجمال
             </div>
             <div class="offer-tab active">
-                <!-- يمكنك تغيير رابط صورة خدمات السيارات هنا -->
                 <img src="https://i.imgur.com/cuaVHfO.png" alt="خدمات السيارات" />
                 خدمات السيارات
             </div>
             <div class="offer-tab">
-                <!-- يمكنك تغيير رابط صورة التسوق هنا -->
                 <img src="https://i.imgur.com/ZdBfdt3.png" alt="التسوق" />
                 التسوق
             </div>
             <div class="offer-tab">
-                <!-- يمكنك تغيير رابط صورة الفنادق والسفر هنا -->
                 <img src="https://i.imgur.com/feExaaj.png" alt="الفنادق والسفر" />
                 الفنادق والسفر
             </div>
             <div class="offer-tab">
-                <!-- يمكنك تغيير رابط صورة المطاعم والمقاهي هنا -->
                 <img src="https://i.imgur.com/LssS9mE.png" alt="المطاعم والمقاهي" />
                 المطاعم والمقاهي
             </div>
         </div>
 
-        <!-- ====== Offers Slider ====== -->
         <div class="offers-slider">
-            <!-- Offer 1 -->
             <div class="offer-card">
-                <!-- تم عكس الترتيب هنا لتكون الصورة على اليمين والكتابة على اليسار -->
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/85.png" alt="Speero" />
                     <div class="offer-discount">10% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">سبيرو</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="1">عرض العرض</button>
             </div>
 
-            <!-- Offer 2 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/116.png" alt="Logo2" />
                     <div class="offer-discount">15% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">كلارو</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="2">عرض العرض</button>
             </div>
 
-            <!-- Offer 3 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/124.png" alt="Logo3" />
                     <div class="offer-discount">5% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">اطلبها</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="3">عرض العرض</button>
             </div>
 
-            <!-- Offer 4 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/130.png" alt="Logo4" />
                     <div class="offer-discount">25% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">منار العصرية لصيانة السيارات</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="4">عرض العرض</button>
             </div>
 
-            <!-- Offer 5 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/131.png" alt="Logo5" />
                     <div class="offer-discount">25% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">أخطبوط للعناية بالسيارة</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="5">عرض العرض</button>
             </div>
 
-            <!-- Offer 6 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/148.png" alt="Logo6" />
                     <div class="offer-discount">40% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">جيني</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="6">عرض العرض</button>
             </div>
 
-            <!-- Offer 7 -->
             <div class="offer-card">
                 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin-bottom: 20px;">
                     <img src="https://bcare.com.sa/assets/images/wareef_images/173.png" alt="Logo7" />
                     <div class="offer-discount">40% خصم<br /><span style="font-size:18px; color:#666; font-weight:normal;">مسمار</span></div>
                 </div>
-                <button class="btn-blue">عرض العرض</button>
+                <button class="btn-blue" data-offer="7">عرض العرض</button>
             </div>
         </div>
 
-        <!-- العداد السفلي للعروض -->
         <div style="text-align: center; font-weight: bold; color: var(--primary-blue); margin-bottom: 30px; font-size: 16px;">
             <span id="current-offer-num">1</span>/<span id="total-offers-num">7</span>
         </div>
 
-        <button class="btn-outline-blue" style="margin-bottom: 40px;">عرض المزيد من العروض</button>
+        <button class="btn-outline-blue" id="view-more-offers-btn" style="margin-bottom: 40px;">عرض المزيد من العروض</button>
 
         <div class="safe-journey-wrap" id="safe-journey">
             <h2 class="section-title big-heading">رحلة <span>آمنة</span> مع بي كير</h2>
@@ -1281,9 +1487,8 @@
             </div>
         </div>
 
-        <button class="btn-blue" style="width:calc(100% - 32px); margin:0 16px 40px;">تصفح جميع المقالات</button>
+        <button class="btn-blue" id="view-all-articles-btn" style="width:calc(100% - 32px); margin:0 16px 40px;">تصفح جميع المقالات</button>
 
-        <!-- Individuals / Companies -->
         <div class="target-tabs">
             <button class="t-tab">شركات</button>
             <button class="t-tab active">أفراد</button>
@@ -1451,6 +1656,107 @@
         </div>
     </div>
 
+    <!-- ==================== OFFER DETAIL PAGE ==================== -->
+    <div id="offer-detail-page">
+        <div class="subpage-container">
+
+            <header class="header">
+                <div class="header-logo">
+                    <img src="https://bcare.com.sa/assets/images/Bcare-logo.svg" alt="BCare Logo" />
+                </div>
+                <div class="header-actions">
+                    <button class="icon-circ profile-icon"><i class="fa-solid fa-user"></i></button>
+                    <div class="lang-btn">EN <i class="fa-solid fa-globe"></i></div>
+                    <button class="icon-circ"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-circ"><i class="fa-solid fa-headset"></i></button>
+                    <button class="icon-circ" id="offer-back-icon" title="رجوع"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </header>
+
+            <div class="offer-detail-card">
+                <img id="offer-detail-logo" class="offer-detail-logo" src="" alt="" />
+                <div class="offer-detail-discount" id="offer-detail-discount"></div>
+                <div class="offer-detail-brand" id="offer-detail-brand"></div>
+                <div class="offer-detail-category" id="offer-detail-category"></div>
+            </div>
+
+            <div class="offer-detail-info">
+                <h3>تفاصيل العرض</h3>
+                <p id="offer-detail-description"></p>
+            </div>
+
+            <div class="offer-detail-features" id="offer-detail-features"></div>
+
+            <div class="offer-detail-terms" id="offer-detail-terms"></div>
+
+            <a href="page1.html" class="btn-get-offer">الحصول على العرض</a>
+
+            <button class="article-back-btn" id="offer-back-btn">
+                <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== ALL OFFERS PAGE ==================== -->
+    <div id="all-offers-page">
+        <div class="subpage-container">
+
+            <header class="header">
+                <div class="header-logo">
+                    <img src="https://bcare.com.sa/assets/images/Bcare-logo.svg" alt="BCare Logo" />
+                </div>
+                <div class="header-actions">
+                    <button class="icon-circ profile-icon"><i class="fa-solid fa-user"></i></button>
+                    <div class="lang-btn">EN <i class="fa-solid fa-globe"></i></div>
+                    <button class="icon-circ"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-circ"><i class="fa-solid fa-headset"></i></button>
+                    <button class="icon-circ" id="all-offers-back-icon" title="رجوع"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </header>
+
+            <div class="subpage-hero">
+                <h1>جميع العروض والخصومات</h1>
+                <p>تصفح كافة العروض المتاحة من متاجر وشركاء بي كير</p>
+            </div>
+
+            <div class="offers-grid-2col" id="all-offers-grid"></div>
+
+            <button class="article-back-btn" id="all-offers-back-btn">
+                <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== ALL ARTICLES PAGE ==================== -->
+    <div id="all-articles-page">
+        <div class="subpage-container">
+
+            <header class="header">
+                <div class="header-logo">
+                    <img src="https://bcare.com.sa/assets/images/Bcare-logo.svg" alt="BCare Logo" />
+                </div>
+                <div class="header-actions">
+                    <button class="icon-circ profile-icon"><i class="fa-solid fa-user"></i></button>
+                    <div class="lang-btn">EN <i class="fa-solid fa-globe"></i></div>
+                    <button class="icon-circ"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-circ"><i class="fa-solid fa-headset"></i></button>
+                    <button class="icon-circ" id="all-articles-back-icon" title="رجوع"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </header>
+
+            <div class="subpage-hero">
+                <h1>جميع المقالات</h1>
+                <p>تصفح أحدث المقالات من جميع الأقسام بشكل عشوائي</p>
+            </div>
+
+            <div class="all-articles-list" id="all-articles-list"></div>
+
+            <button class="article-back-btn" id="all-articles-back-btn">
+                <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+            </button>
+        </div>
+    </div>
+
 <style>
 
     .site-footer {
@@ -1530,18 +1836,52 @@
         border-top: 1px solid #f2f2f2;
     }
     .site-footer .accordion-item {
+        display: block;
+        border-bottom: 1px solid #f2f2f2;
+    }
+    .site-footer .accordion-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 18px 20px;
-        border-bottom: 1px solid #f2f2f2;
         color: #111;
         font-size: 15px;
         cursor: pointer;
     }
-    .site-footer .accordion-item i {
+    .site-footer .accordion-header i {
         color: #777;
         font-size: 14px;
+        transition: transform 0.3s ease;
+    }
+    .site-footer .accordion-item.open .accordion-header i {
+        transform: rotate(180deg);
+    }
+    .site-footer .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        background: #f9fafb;
+    }
+    .site-footer .accordion-item.open .accordion-content {
+        max-height: 520px;
+    }
+    .site-footer .accordion-content ul {
+        list-style: none;
+        padding: 6px 20px 14px;
+        margin: 0;
+    }
+    .site-footer .accordion-content li {
+        padding: 9px 0;
+        border-bottom: 1px dashed #eee;
+    }
+    .site-footer .accordion-content li:last-child {
+        border-bottom: none;
+    }
+    .site-footer .accordion-content a {
+        color: #20709b;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
     }
 
     .site-footer .payment-section {
@@ -1613,7 +1953,6 @@
 
 <footer class="site-footer">
     <div class="footer-container">
-        <!-- شعار الموقع -->
         <div class="logo-section">
             <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
         </div>
@@ -1635,22 +1974,66 @@
 
         <div class="spacer"></div>
 
-        <div class="accordion">
+        <div class="accordion" id="footer-accordion">
             <div class="accordion-item">
-                <span>منتجات الأفراد</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div class="accordion-header">
+                    <span>منتجات الأفراد</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="page1.html">تأمين المركبات</a></li>
+                        <li><a href="page1.html">التأمين الصحي للعمالة المنزلية</a></li>
+                        <li><a href="page1.html">تأمين السفر</a></li>
+                        <li><a href="page1.html">تأمين الأخطاء الطبية</a></li>
+                        <li><a href="page1.html">تأمين المسؤولية المهنية</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="accordion-item">
-                <span>منتجات الشركات</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div class="accordion-header">
+                    <span>منتجات الشركات</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="page1.html">تأمين أسطول المركبات</a></li>
+                        <li><a href="page1.html">التأمين الطبي الجماعي</a></li>
+                        <li><a href="page1.html">تأمين المسؤولية المهنية للشركات</a></li>
+                        <li><a href="page1.html">تأمين الممتلكات والأصول</a></li>
+                        <li><a href="page1.html">تأمين الشحن البحري والجوي</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="accordion-item">
-                <span>مصادر</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div class="accordion-header">
+                    <span>مصادر</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="#all-articles">المدونة والمقالات</a></li>
+                        <li><a href="#all-articles">دليل تأمين السيارات</a></li>
+                        <li><a href="#all-articles">دليل تأمين السفر</a></li>
+                        <li><a href="#all-articles">دليل تأمين العمالة المنزلية</a></li>
+                        <li><a href="#all-articles">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="accordion-item">
-                <span>الشركة</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div class="accordion-header">
+                    <span>الشركة</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><a href="page1.html">عن بي كير</a></li>
+                        <li><a href="page1.html">فريق العمل</a></li>
+                        <li><a href="page1.html">الوظائف والفرص</a></li>
+                        <li><a href="page1.html">تواصل معنا</a></li>
+                        <li><a href="page1.html">سياسة الخصوصية والشروط</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -1682,14 +2065,12 @@
     </div>
 </footer>
 
-<!-- ====== سكربت تشغيل السلايدر وتغيير التبويبات + المقالات + الأسئلة الشائعة ====== -->
 <script>
     /* =========================================================
        ============  محتوى المقالات (لكل الأقسام)  =============
        ========================================================= */
     const ARTICLES = {
 
-        /* ================= المركبات ================= */
         "v1": {
             title: "طريقة تأمين المركبة أونلاين | بي كير لوساطة التأمين",
             img: "https://bcare.com.sa/assets/images/newDesign/blogs1.jpg",
@@ -1807,7 +2188,6 @@
             `
         },
 
-        /* ================= الأخطاء الطبية ================= */
         "m1": {
             title: "طريقة عمل تأمين الأخطاء الطبية أونلاين | بي كير",
             img: "https://bcare.com.sa/assets/images/newDesign/blog1_mmp.jpg",
@@ -1922,7 +2302,6 @@
             `
         },
 
-        /* ================= السفر ================= */
         "t1": {
             title: "طريقة عمل تأمين السفر أونلاين | بي كير",
             img: "https://bcare.com.sa/assets/images/newDesign/blog1_Travel.jpg",
@@ -2058,7 +2437,6 @@
             `
         },
 
-        /* ================= العمالة المنزلية ================= */
         "h1": {
             title: "طريقة تأمين العمالة المنزلية أونلاين | بي كير لوساطة التأمين",
             img: "https://bcare.com.sa/assets/images/newDesign/blog1_helpers.jpg",
@@ -2191,6 +2569,110 @@
     };
 
     /* =========================================================
+       ============  بيانات العروض (7 عروض)  ==================
+       ========================================================= */
+    const OFFERS = {
+        "1": {
+            brand: "سبيرو",
+            discount: "10%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/85.png",
+            category: "خدمات السيارات",
+            description: "احصل على خصم 10% على جميع خدمات غسيل وتلميع وتنظيف السيارات من سبيرو، أحد أبرز مراكز العناية بالسيارات في المملكة. الخصم ساري على كافة الفروع، ويشمل الباقات الفردية والاشتراكات الشهرية.",
+            features: [
+                { icon: "fa-solid fa-car-side", text: "خصم 10% على خدمات غسيل السيارات الخارجي والداخلي" },
+                { icon: "fa-solid fa-spray-can-sparkles", text: "خصم إضافي على باقات التلميع والحماية السيراميكية" },
+                { icon: "fa-solid fa-location-dot", text: "صالح في جميع فروع سبيرو داخل المملكة" },
+                { icon: "fa-solid fa-clock", text: "ساري طوال العام لجميع عملاء بي كير" }
+            ],
+            terms: "العرض ساري لعملاء بي كير الحاليين والجدد. لا يمكن الجمع بين هذا العرض وأي عرض آخر. يتطلب إظهار وثيقة التأمين الصادرة من بي كير عند الاستخدام. تخضع الشروط والأحكام لسياسة سبيرو."
+        },
+        "2": {
+            brand: "كلارو",
+            discount: "15%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/116.png",
+            category: "خدمات السيارات",
+            description: "استمتع بخصم 15% على جميع خدمات صيانة السيارات من كلارو، بما في ذلك تغيير الزيوت والفلاتر وفحص الأنظمة الإلكترونية. العرض مناسب لجميع أنواع السيارات.",
+            features: [
+                { icon: "fa-solid fa-oil-can", text: "خصم 15% على خدمات تغيير الزيوت والفلاتر" },
+                { icon: "fa-solid fa-wrench", text: "خصم على أعمال الصيانة الدورية والفحص الشامل" },
+                { icon: "fa-solid fa-microchip", text: "خصم على فحص وإصلاح الأنظمة الإلكترونية" },
+                { icon: "fa-solid fa-user-shield", text: "ضمان على قطع الغيار الأصلية المستخدمة" }
+            ],
+            terms: "العرض خاص بعملاء بي كير فقط. يتطلب إبراز بطاقة العميل أو الوثيقة عند الوصول. لا يشمل العرض قطع الغيار المستوردة الخاصة. تخضع الشروط لسياسة كلارو."
+        },
+        "3": {
+            brand: "اطلبها",
+            discount: "5%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/124.png",
+            category: "خدمات السيارات",
+            description: "خصم 5% على خدمات توصيل قطع غيار السيارات وطلبها أونلاين من اطلبها، مع إمكانية الشحن السريع لجميع مناطق المملكة. مثالي لمن يحتاج قطع غيار نادرة.",
+            features: [
+                { icon: "fa-solid fa-truck-fast", text: "خصم 5% على جميع الطلبات عبر المنصة" },
+                { icon: "fa-solid fa-boxes-stacked", text: "تشكيلة واسعة من قطع الغيار الأصلية والبديلة" },
+                { icon: "fa-solid fa-credit-card", text: "إمكانية الدفع الآجل أو التقسيط حسب الأهلية" },
+                { icon: "fa-solid fa-headset", text: "دعم فني لاختيار القطعة المناسبة لسيارتك" }
+            ],
+            terms: "الخصم لا يشمل رسوم الشحن. يتطلب التسجيل كعميل بي كير للاستفادة. العرض غير قابل للجمع مع أي خصم آخر. تخضع الشروط لسياسة اطلبها."
+        },
+        "4": {
+            brand: "منار العصرية لصيانة السيارات",
+            discount: "25%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/130.png",
+            category: "خدمات السيارات",
+            description: "خصم 25% على جميع خدمات الصيانة الشاملة وفحص ما قبل الشراء من منار العصرية. يشمل العرض الفحص الميكانيكي والكهربائي وفحص الهيكل.",
+            features: [
+                { icon: "fa-solid fa-clipboard-check", text: "خصم 25% على فحص ما قبل شراء السيارة" },
+                { icon: "fa-solid fa-screwdriver-wrench", text: "خصم على الصيانة الشاملة والتشخيص الكامل" },
+                { icon: "fa-solid fa-engine", text: "فحص شامل للمحرك وناقل الحركة" },
+                { icon: "fa-solid fa-file-invoice", text: "تقرير مفصل بحالة السيارة بعد الفحص" }
+            ],
+            terms: "العرض ساري في فرع منار العصرية الرئيسي. يجب حجز موعد مسبق عبر المنصة. لا يشمل قطع الغيار. تخضع الشروط لسياسة منار العصرية."
+        },
+        "5": {
+            brand: "أخطبوط للعناية بالسيارة",
+            discount: "25%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/131.png",
+            category: "خدمات السيارات",
+            description: "خصم 25% على خدمات العناية بالسيارة من أخطبوط، بما يشمل التلميع والحماية الكاملة والتعقيم الداخلي، باستخدام أحدث المواد والتقنيات العالمية.",
+            features: [
+                { icon: "fa-solid fa-sparkles", text: "خصم 25% على باقات التلميع والحماية" },
+                { icon: "fa-solid fa-spray-can", text: "خصم على التعقيم الداخلي للسيارة" },
+                { icon: "fa-solid fa-shield-halved", text: "حماية سيراميك ونانو سيراميك بأسعار خاصة" },
+                { icon: "fa-solid fa-star", text: "استخدام مواد أصلية عالمية معتمدة" }
+            ],
+            terms: "العرض لا يشمل إصلاح الخدوش العميقة. يتطلب حجز مسبق. صالح لعميل واحد لكل وثيقة. تخضع الشروط لسياسة أخطبوط."
+        },
+        "6": {
+            brand: "جيني",
+            discount: "40%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/148.png",
+            category: "خدمات السيارات",
+            description: "خصم 40% على باقة العناية الأساسية بالسيارة من جيني، وتشمل الغسيل الخارجي والداخلي والتلميع السريع وفحص الإطارات، بسعر لا يقاوم.",
+            features: [
+                { icon: "fa-solid fa-soap", text: "خصم 40% على باقة الغسيل الأساسية" },
+                { icon: "fa-solid fa-car", text: "تشمل الغسيل الخارجي والداخلي" },
+                { icon: "fa-solid fa-circle-notch", text: "فحص ضغط الإطارات وضبطها مجانًا" },
+                { icon: "fa-solid fa-bolt", text: "خدمة سريعة خلال 30 دقيقة" }
+            ],
+            terms: "العرض صالح أيام الأحد إلى الأربعاء فقط. لا يشمل العطلات الرسمية. محدود بسيارة واحدة لكل عميل. تخضع الشروط لسياسة جيني."
+        },
+        "7": {
+            brand: "مسمار",
+            discount: "40%",
+            logo: "https://bcare.com.sa/assets/images/wareef_images/173.png",
+            category: "خدمات السيارات",
+            description: "خصم 40% على خدمات تغيير وترصيص الإطارات وفحص نظام التعليق من مسمار، مع ضمان على الخدمة وقطع الغيار المستخدمة.",
+            features: [
+                { icon: "fa-solid fa-circle-notch", text: "خصم 40% على تغيير الإطارات" },
+                { icon: "fa-solid fa-balance-scale", text: "ترصيص الإطارات بأحدث الأجهزة" },
+                { icon: "fa-solid fa-screwdriver", text: "فحص نظام التعليق والمقصات" },
+                { icon: "fa-solid fa-shield", text: "ضمان على الخدمة لمدة 30 يومًا" }
+            ],
+            terms: "الخصم لا يشمل تكلفة الإطارات الجديدة. يتطلب إبراز وثيقة بي كير عند الخدمة. العرض ساري في جميع الفروع المشاركة. تخضع الشروط لسياسة مسمار."
+        }
+    };
+
+    /* =========================================================
        ====================  تشغيل الصفحة  =====================
        ========================================================= */
     document.addEventListener("DOMContentLoaded", function() {
@@ -2232,14 +2714,13 @@
             });
         }
 
-        /* ====== الأسئلة الشائعة (فتح وإغلاق) ====== */
+        /* ====== الأسئلة الشائعة ====== */
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const header = item.querySelector('.faq-header');
             if (!header) return;
             header.addEventListener('click', function() {
                 const isOpen = item.classList.contains('open');
-                // إغلاق جميع العناصر الأخرى (اختياري - يفتح سؤال واحد فقط في نفس الوقت)
                 faqItems.forEach(other => {
                     if (other !== item) other.classList.remove('open');
                 });
@@ -2251,13 +2732,61 @@
             });
         });
 
-        /* ====== التنقل بين المقالات ====== */
+        /* ====== Footer Accordion (مثل نظام الأسئلة الشائعة) ====== */
+        const footerAccItems = document.querySelectorAll('#footer-accordion .accordion-item');
+        footerAccItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            if (!header) return;
+            header.addEventListener('click', function() {
+                const isOpen = item.classList.contains('open');
+                footerAccItems.forEach(other => {
+                    if (other !== item) other.classList.remove('open');
+                });
+                if (isOpen) {
+                    item.classList.remove('open');
+                } else {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        /* ====== التنقل بين الصفحات (Routing) ====== */
         const mainApp = document.getElementById('main-app');
         const articlePage = document.getElementById('article-page');
+        const offerDetailPage = document.getElementById('offer-detail-page');
+        const allOffersPage = document.getElementById('all-offers-page');
+        const allArticlesPage = document.getElementById('all-articles-page');
+
         const articleTitleEl = document.getElementById('article-title');
         const articleImgEl = document.getElementById('article-img');
         const articleBodyEl = document.getElementById('article-body');
+
+        const offerDetailLogo = document.getElementById('offer-detail-logo');
+        const offerDetailDiscount = document.getElementById('offer-detail-discount');
+        const offerDetailBrand = document.getElementById('offer-detail-brand');
+        const offerDetailCategory = document.getElementById('offer-detail-category');
+        const offerDetailDescription = document.getElementById('offer-detail-description');
+        const offerDetailFeatures = document.getElementById('offer-detail-features');
+        const offerDetailTerms = document.getElementById('offer-detail-terms');
+
+        const allOffersGrid = document.getElementById('all-offers-grid');
+        const allArticlesList = document.getElementById('all-articles-list');
+
         let savedScroll = 0;
+
+        function hideAllPages() {
+            mainApp.style.display = 'none';
+            articlePage.style.display = 'none';
+            offerDetailPage.style.display = 'none';
+            allOffersPage.style.display = 'none';
+            allArticlesPage.style.display = 'none';
+        }
+
+        function showMain() {
+            hideAllPages();
+            mainApp.style.display = 'block';
+            window.scrollTo(0, savedScroll || 0);
+        }
 
         function renderArticle(id) {
             const art = ARTICLES[id];
@@ -2268,54 +2797,187 @@
             articleBodyEl.innerHTML = art.content;
         }
 
-        function handleRoute() {
-            const match = window.location.hash.match(/^#article\/(.+)$/);
-            const id = match ? match[1] : null;
+        function renderOfferDetail(id) {
+            const off = OFFERS[id];
+            if (!off) return;
+            offerDetailLogo.src = off.logo;
+            offerDetailLogo.alt = off.brand;
+            offerDetailDiscount.textContent = off.discount + " خصم";
+            offerDetailBrand.textContent = off.brand;
+            offerDetailCategory.textContent = off.category;
+            offerDetailDescription.textContent = off.description;
+            offerDetailFeatures.innerHTML = off.features.map(f => `
+                <div class="of-row">
+                    <div class="of-icon"><i class="${f.icon}"></i></div>
+                    <div class="of-text">${f.text}</div>
+                </div>
+            `).join('');
+            offerDetailTerms.innerHTML = `<strong>الشروط والأحكام:</strong><br>${off.terms}`;
+        }
 
-            if (id && ARTICLES[id]) {
+        function renderAllOffers() {
+            allOffersGrid.innerHTML = Object.keys(OFFERS).map(id => {
+                const o = OFFERS[id];
+                return `
+                    <div class="offer-tile" data-offer-tile="${id}">
+                        <img src="${o.logo}" alt="${o.brand}" />
+                        <div class="offer-tile-discount">${o.discount} خصم</div>
+                        <div class="offer-tile-brand">${o.brand}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function shuffleArray(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function renderAllArticles() {
+            const keys = shuffleArray(Object.keys(ARTICLES));
+            allArticlesList.innerHTML = keys.map(id => {
+                const a = ARTICLES[id];
+                return `
+                    <div class="article-card" data-article="${id}">
+                        <img src="${a.img}" alt="" class="art-img" />
+                        <div class="art-title">${a.title}</div>
+                        <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleRoute() {
+            const hash = window.location.hash;
+
+            // Article detail
+            let m = hash.match(/^#article\/(.+)$/);
+            if (m && ARTICLES[m[1]]) {
+                if (mainApp.style.display !== 'none' && articlePage.style.display === 'none') {
+                    savedScroll = window.scrollY;
+                }
+                renderArticle(m[1]);
+                hideAllPages();
+                articlePage.style.display = 'block';
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // Offer detail
+            m = hash.match(/^#offer\/(.+)$/);
+            if (m && OFFERS[m[1]]) {
                 if (mainApp.style.display !== 'none') {
                     savedScroll = window.scrollY;
                 }
-                renderArticle(id);
-                mainApp.style.display = 'none';
-                articlePage.style.display = 'block';
+                renderOfferDetail(m[1]);
+                hideAllPages();
+                offerDetailPage.style.display = 'block';
                 window.scrollTo(0, 0);
-            } else {
-                articlePage.style.display = 'none';
-                mainApp.style.display = 'block';
-                window.scrollTo(0, savedScroll || 0);
+                return;
             }
+
+            // All offers
+            if (hash === '#all-offers') {
+                if (mainApp.style.display !== 'none') {
+                    savedScroll = window.scrollY;
+                }
+                renderAllOffers();
+                hideAllPages();
+                allOffersPage.style.display = 'block';
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // All articles
+            if (hash === '#all-articles') {
+                if (mainApp.style.display !== 'none') {
+                    savedScroll = window.scrollY;
+                }
+                renderAllArticles();
+                hideAllPages();
+                allArticlesPage.style.display = 'block';
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // Default: main app
+            showMain();
         }
 
         window.addEventListener('hashchange', handleRoute);
 
-        // النقر على أي بطاقة مقال (يعمل حتى مع المقالات المُحمّلة ديناميكيًا)
+        // Global click delegation
         document.addEventListener('click', function(e) {
+
+            // Article card
             const card = e.target.closest('.article-card');
             if (card && card.dataset.article) {
                 e.preventDefault();
                 window.location.hash = 'article/' + card.dataset.article;
+                return;
+            }
+
+            // Offer button (in slider)
+            const offerBtn = e.target.closest('[data-offer]');
+            if (offerBtn && offerBtn.dataset.offer) {
+                e.preventDefault();
+                window.location.hash = 'offer/' + offerBtn.dataset.offer;
+                return;
+            }
+
+            // Offer tile (in all offers page)
+            const offerTile = e.target.closest('[data-offer-tile]');
+            if (offerTile && offerTile.dataset.offerTile) {
+                e.preventDefault();
+                window.location.hash = 'offer/' + offerTile.dataset.offerTile;
+                return;
+            }
+
+            // View more offers button
+            const moreOffers = e.target.closest('#view-more-offers-btn');
+            if (moreOffers) {
+                e.preventDefault();
+                window.location.hash = 'all-offers';
+                return;
+            }
+
+            // View all articles button
+            const moreArticles = e.target.closest('#view-all-articles-btn');
+            if (moreArticles) {
+                e.preventDefault();
+                window.location.hash = 'all-articles';
+                return;
             }
         });
 
-        // أزرار الرجوع من صفحة المقال
-        function goBackFromArticle() {
+        // Back buttons
+        function goHome() {
             if (window.location.hash) {
                 window.location.hash = '';
             } else {
                 handleRoute();
             }
         }
-        document.getElementById('article-back-icon').addEventListener('click', goBackFromArticle);
-        document.getElementById('article-back-btn').addEventListener('click', goBackFromArticle);
 
-        // تشغيل التوجيه عند التحميل الأول
+        document.getElementById('article-back-icon').addEventListener('click', goHome);
+        document.getElementById('article-back-btn').addEventListener('click', goHome);
+        document.getElementById('offer-back-icon').addEventListener('click', goHome);
+        document.getElementById('offer-back-btn').addEventListener('click', goHome);
+        document.getElementById('all-offers-back-icon').addEventListener('click', goHome);
+        document.getElementById('all-offers-back-btn').addEventListener('click', goHome);
+        document.getElementById('all-articles-back-icon').addEventListener('click', goHome);
+        document.getElementById('all-articles-back-btn').addEventListener('click', goHome);
+
+        // Run route on first load
         handleRoute();
 
         /* ====== Dynamic Tab Switching Logic ====== */
         const tabs = document.querySelectorAll('.main-tab');
         
-        // Elements to change
         const heroTitle = document.getElementById('hero-title');
         const heroSubtitle = document.getElementById('hero-subtitle');
         const heroImg = document.getElementById('hero-img');
@@ -2328,7 +2990,6 @@
         const guideSubtitle = document.getElementById('guide-subtitle');
         const articlesList = document.getElementById('articles-list');
 
-        // Save original (Vehicles) content
         const originalContent = {
             heroTitle: heroTitle.innerHTML,
             heroSubtitle: heroSubtitle.innerHTML,
@@ -2345,46 +3006,31 @@
             articlesList: articlesList.innerHTML
         };
 
-        // ====== دالة تبديل صور الأيقونات في التبويبات ======
-        // هذه الدالة تتحقق من كل تبويب وتستبدل الصورة حسب الحالة (نشط / غير نشط)
         function updateTabIcons() {
             tabs.forEach(tab => {
                 const img = tab.querySelector('img');
                 if (!img) return;
-                
                 const activeSrc = img.getAttribute('data-active-src');
                 const inactiveSrc = img.getAttribute('data-inactive-src');
-                
                 if (tab.classList.contains('active')) {
-                    // التبويب نشط - استخدم الصورة النشطة
-                    if (activeSrc && img.src !== activeSrc) {
-                        img.src = activeSrc;
-                    }
+                    if (activeSrc && img.src !== activeSrc) img.src = activeSrc;
                 } else {
-                    // التبويب غير نشط - استخدم الصورة العادية
-                    if (inactiveSrc && img.src !== inactiveSrc) {
-                        img.src = inactiveSrc;
-                    }
+                    if (inactiveSrc && img.src !== inactiveSrc) img.src = inactiveSrc;
                 }
             });
         }
 
-        // تفعيل الصور الصحيحة عند التحميل الأول
         updateTabIcons();
 
         tabs.forEach(tab => {
             tab.addEventListener('click', function() {
-                // Update active class
                 tabs.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                
-                // تحديث صور الأيقونات بعد تغيير التبويب النشط
                 updateTabIcons();
 
                 const target = this.getAttribute('data-target');
 
                 if (target === 'medical') {
-                    // ================= MEDICAL ERRORS CONTENT =================
                     heroTitle.innerHTML = 'احم <span>ممارستك الطبية</span> بثقة';
                     heroSubtitle.innerHTML = 'تعرف على أبرز التغطيات التي يشملها عادة تأمين الأخطاء الطبية للممارسين الصحيين في المملكة العربية السعودية';
                     heroImg.src = 'https://i.imgur.com/t0pFXEq.png'; 
@@ -2420,7 +3066,6 @@
                     `;
 
                 } else if (target === 'travel') {
-                    // ================= TRAVEL CONTENT =================
                     heroTitle.innerHTML = 'اختر <span>التغطية</span> المناسبة لتأمين سفرك';
                     heroSubtitle.innerHTML = 'قارن بين أبرز مزايا خطط تأمين السفر لدينا، واختر تغطية الوجهة التي تناسب رحلتك';
                     heroImg.src = 'https://i.imgur.com/6MHfzdO.png'; 
@@ -2461,24 +3106,12 @@
                     `;
 
                 } else if (target === 'home') {
-                    // ================= DOMESTIC WORKERS CONTENT =================
-                    
-                    // 1. Update Hero Section
                     heroTitle.innerHTML = 'اختر <span>التغطية</span> المناسبة للتأمين الصحي للعمالة المنزلية';
                     heroSubtitle.innerHTML = 'قارن بين أبرز مزايا فئات التأمين الصحي للعمالة المنزلية، واختر التغطية التي تناسب احتياجات أسرتك';
-                    
-                    // مكان تغيير صورة الهيرو للعمالة المنزلية
                     heroImg.src = 'https://i.imgur.com/UwyMuI7.png'; 
                     heroImg.alt = 'التأمين الصحي للعمالة المنزلية';
-
-                    // 2. Update Table Image
-                    // مكان تغيير صورة الجدول للعمالة المنزلية
                     tableImageContainer.innerHTML = '<img src="https://i.imgur.com/AkFN7TL.png" alt="Domestic Workers Table" />';
-
-                    // 3. Hide Coverage Tabs
                     coverageTabs.style.display = 'none';
-
-                    // 4. Update Coverage Info
                     coverageInfo.innerHTML = `
                         <h3>ما الذي يغطيه التأمين؟</h3>
                         <p>إذا كنت تدور على أعلى مستوى من التأمين الطبي فئة VIP هي الخيار المناسب لك تعطيك تغطية صحية أوسع، وحدود منافع أعلى، وإمكانية الوصول إلى شبكة طبية كبيرة تضم مستشفيات ومراكز وعيادات معتمدة، حسب شركة التأمين اللي تختارها وتناسب اللي يبي راحة أكثر عند العلاج ويبحث عن تغطية شاملة له ولعائلته أو لموظفي شركته.</p>
@@ -2487,140 +3120,30 @@
                             <span class="dot"></span>
                         </div>
                     `;
-
-                    // 5. Update Features Table
                     featuresTable.innerHTML = `
-                        <div class="tb-header">
-                            <span>الميزة</span>
-                            <span>الوصف</span>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-hospital"></i></div>
-                                <div class="tb-text">
-                                    <h4>شبكة المستشفيات والعيادات</h4>
-                                    <p>الوصول إلى مقدمي الخدمة والمنشآت الطبية المعتمدة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-stethoscope"></i></div>
-                                <div class="tb-text">
-                                    <h4>العيادات الخارجية</h4>
-                                    <p>الاستشارات والفحوصات المخبرية والأشعة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-bed-pulse"></i></div>
-                                <div class="tb-text">
-                                    <h4>التنويم والعمليات الجراحية</h4>
-                                    <p>التنويم في المستشفى والعلاج الجراحي</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-truck-medical"></i></div>
-                                <div class="tb-text">
-                                    <h4>العلاج الطارئ</h4>
-                                    <p>الرعاية الطبية العاجلة والدخول إلى قسم الطوارئ</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-baby"></i></div>
-                                <div class="tb-text">
-                                    <h4>الأمومة والولادة</h4>
-                                    <p>تغطية متابعة الحمل والولادة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-tooth"></i></div>
-                                <div class="tb-text">
-                                    <h4>مزايا علاج الأسنان</h4>
-                                    <p>علاجات الأسنان من الأساسية إلى المتقدمة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-glasses"></i></div>
-                                <div class="tb-text">
-                                    <h4>مزايا البصريات</h4>
-                                    <p>خدمات فحص النظر والنظارات الطبية</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                                <div class="tb-text">
-                                    <h4>رعاية الأمراض المزمنة</h4>
-                                    <p>دعم الحالات الطبية المستمرة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
-                        <div class="tb-row">
-                            <div class="tb-right">
-                                <div class="tb-icon"><i class="fa-solid fa-syringe"></i></div>
-                                <div class="tb-text">
-                                    <h4>تغطية التطعيمات</h4>
-                                    <p>تغطية اللقاحات الوقائية المعتمدة</p>
-                                </div>
-                            </div>
-                            <div class="tb-check"><i class="fa-regular fa-circle-check"></i></div>
-                        </div>
+                        <div class="tb-header"><span>الميزة</span><span>الوصف</span></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-hospital"></i></div><div class="tb-text"><h4>شبكة المستشفيات والعيادات</h4><p>الوصول إلى مقدمي الخدمة والمنشآت الطبية المعتمدة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-stethoscope"></i></div><div class="tb-text"><h4>العيادات الخارجية</h4><p>الاستشارات والفحوصات المخبرية والأشعة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-bed-pulse"></i></div><div class="tb-text"><h4>التنويم والعمليات الجراحية</h4><p>التنويم في المستشفى والعلاج الجراحي</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-truck-medical"></i></div><div class="tb-text"><h4>العلاج الطارئ</h4><p>الرعاية الطبية العاجلة والدخول إلى قسم الطوارئ</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-baby"></i></div><div class="tb-text"><h4>الأمومة والولادة</h4><p>تغطية متابعة الحمل والولادة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-tooth"></i></div><div class="tb-text"><h4>مزايا علاج الأسنان</h4><p>علاجات الأسنان من الأساسية إلى المتقدمة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-glasses"></i></div><div class="tb-text"><h4>مزايا البصريات</h4><p>خدمات فحص النظر والنظارات الطبية</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-heart-pulse"></i></div><div class="tb-text"><h4>رعاية الأمراض المزمنة</h4><p>دعم الحالات الطبية المستمرة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
+                        <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-syringe"></i></div><div class="tb-text"><h4>تغطية التطعيمات</h4><p>تغطية اللقاحات الوقائية المعتمدة</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
                     `;
-
-                    // 6. Update Safe Journey Section
                     safeJourney.querySelector('h2').innerHTML = 'وفر التأمين الصحي لعمالتك المنزلية مع بي كير';
                     safeJourney.querySelector('p').innerHTML = 'قارن خطط التأمين الصحي الموثوقة، واختر التغطية المناسبة، ووفر الحماية لعمالتك المنزلية من خلال خدمات إلكترونية سهلة';
-
-                    // 7. Update Guide Section
                     guideTitle.innerHTML = 'دليل التأمين الصحي للعمالة المنزلية';
                     guideSubtitle.innerHTML = 'أدلة مبسطة تساعدك على فهم التغطيات، ومقارنة الخيارات، وتأمين عمالتك المنزلية بثقة';
-
-                    // 8. Update Articles List
-                    // مكان تغيير صور المقالات للعمالة المنزلية
                     articlesList.innerHTML = `
-                        <div class="article-card" data-article="h1">
-                            <img src="https://bcare.com.sa/assets/images/newDesign/blog1_helpers.jpg" alt="" class="art-img" />
-                            <div class="art-title">طريقة تأمين العمالة المنزلية أونلاين | بي كير لوساطة التأمين</div>
-                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
-                        </div>
-                        <div class="article-card" data-article="h2">
-                            <img src="https://bcare.com.sa/assets/images/newDesign/blog2_helpers.jpg" alt="" class="art-img" />
-                            <div class="art-title">الدليل الشامل لتأمين العمالة المنزلية – بي كير</div>
-                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
-                        </div>
-                        <div class="article-card" data-article="h3">
-                            <img src="https://bcare.com.sa/assets/images/newDesign/blog3_helpers.jpg" alt="" class="art-img" />
-                            <div class="art-title">التأمين الصحي للعمالة المنزلية</div>
-                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
-                        </div>
-                        <div class="article-card" data-article="h4">
-                            <img src="https://bcare.com.sa/assets/images/newDesign/blog4_helpers.jpg" alt="" class="art-img" />
-                            <div class="art-title">أهم الأسئلة الشائعة عن تأمين العمالة المنزلية – بي كير</div>
-                            <div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div>
-                        </div>
+                        <div class="article-card" data-article="h1"><img src="https://bcare.com.sa/assets/images/newDesign/blog1_helpers.jpg" alt="" class="art-img" /><div class="art-title">طريقة تأمين العمالة المنزلية أونلاين | بي كير لوساطة التأمين</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card" data-article="h2"><img src="https://bcare.com.sa/assets/images/newDesign/blog2_helpers.jpg" alt="" class="art-img" /><div class="art-title">الدليل الشامل لتأمين العمالة المنزلية – بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card" data-article="h3"><img src="https://bcare.com.sa/assets/images/newDesign/blog3_helpers.jpg" alt="" class="art-img" /><div class="art-title">التأمين الصحي للعمالة المنزلية</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
+                        <div class="article-card" data-article="h4"><img src="https://bcare.com.sa/assets/images/newDesign/blog4_helpers.jpg" alt="" class="art-img" /><div class="art-title">أهم الأسئلة الشائعة عن تأمين العمالة المنزلية – بي كير</div><div class="art-arrow"><i class="fa-solid fa-chevron-left"></i></div></div>
                     `;
 
                 } else {
-                    // ================= RESTORE ORIGINAL CONTENT (VEHICLES) =================
                     heroTitle.innerHTML = originalContent.heroTitle;
                     heroSubtitle.innerHTML = originalContent.heroSubtitle;
                     heroImg.src = originalContent.heroImgSrc;
