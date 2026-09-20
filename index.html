@@ -269,6 +269,8 @@
             color: var(--text-gray);
             background: var(--white);
             border: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .cov-tab.active {
@@ -298,11 +300,44 @@
             color: #4b5563;
         }
 
-        .coverage-info a {
+        .coverage-info a.read-more-link {
             color: var(--primary-blue);
             font-weight: 800;
             text-decoration: none;
             font-size: 13px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .coverage-more {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .coverage-info.expanded .coverage-more {
+            max-height: 900px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        .coverage-more p {
+            margin-bottom: 8px;
+        }
+
+        .coverage-more ul {
+            margin: 6px 0 8px;
+            padding-right: 20px;
+        }
+
+        .coverage-more li {
+            font-size: 13px;
+            line-height: 1.75;
+            color: #4b5563;
+            margin-bottom: 4px;
         }
 
         .dots {
@@ -1217,14 +1252,19 @@
         </div>
 
         <div class="coverage-tabs" id="coverage-tabs">
-            <button class="cov-tab">ضد الغير</button>
-            <button class="cov-tab">مميز</button>
-            <button class="cov-tab active">شامل</button>
+            <button class="cov-tab" data-cov="veh-third">ضد الغير</button>
+            <button class="cov-tab" data-cov="veh-premium">مميز</button>
+            <button class="cov-tab active" data-cov="veh-comprehensive">شامل</button>
         </div>
 
         <div class="coverage-info" id="coverage-info">
             <h3>ما الذي يغطيه التأمين؟</h3>
-            <p>التأمين الشامل من بي كير هو خيارك الأول والذكي لو تبحث عن أرخص تأمين شامل في السعودية يجمع بين السعر المنافس والحماية، لأنه يوفر حماية كاملة لسيارتك تضمن تصليحها أو استبدالها في حال وقوع حادث حتى لو كان الخطأ عليك 100%، بالإضافة لتغطية المسؤولية تجاه الغير... <a href="page1.html">اقرأ المزيد</a></p>
+            <p id="coverage-short">التأمين الشامل من بي كير هو خيارك الأول والذكي لو تبحث عن أرخص تأمين شامل في السعودية يجمع بين السعر المنافس والحماية، لأنه يوفر حماية كاملة لسيارتك تضمن تصليحها أو استبدالها في حال وقوع حادث حتى لو كان الخطأ عليك 100%، بالإضافة لتغطية المسؤولية تجاه الغير.</p>
+            <a class="read-more-link" id="read-more-link" role="button">اقرأ المزيد</a>
+            <div class="coverage-more" id="coverage-more">
+                <p>يوفّر لك التأمين الشامل من بي كير راحة البال الكاملة، لأنه يغطي مركبتك ضد مجموعة واسعة من المخاطر، ويمنحك إمكانية إصلاح سيارتك في ورش معتمدة، مع تغطية المسؤولية تجاه الغير التي قد تصل إلى ملايين الريالات في حال إصابة الآخرين.</p>
+                <p>وبذلك لا تقتصر الحماية على سيارتك فقط، بل تمتد إلى الطرف الآخر أيضًا، إضافة إلى مزايا المساعدة على الطريق على مدار الساعة، وتغطية الحوادث الشخصية للسائق والركاب.</p>
+            </div>
             <div class="dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -2569,6 +2609,114 @@
     };
 
     /* =========================================================
+       ============  نصوص تغطيات التأمين (المميزة)  ============
+       ========================================================= */
+    const COVERAGE_CONTENT = {
+
+        /* ======== المركبات ======== */
+        "veh-third": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "التأمين ضد الغير هو الحد الأدنى الإلزامي نظامًا في المملكة، ويغطي المسؤولية المدنية تجاه الآخرين فقط، أي الأضرار التي تلحق بمركباتهم وأجسامهم نتيجة حادث كان الخطأ فيه عليك.",
+            full: `
+                <p>هذا النوع من التأمين لا يغطي مركبتك أنت، بل يحمي الطرف الآخر فقط في حال تسببك في حادث. ويشمل عادةً:</p>
+                <ul>
+                    <li>الأضرار المادية التي تلحق بمركبات الآخرين.</li>
+                    <li>الإصابات الجسدية أو الوفاة التي تصيب الآخرين.</li>
+                    <li>المسؤولية تجاه الممتلكات العامة والخاصة.</li>
+                    <li>تغطية الوفاة الناتجة عن الحوادث المرورية.</li>
+                    <li>تغطية الإصابات الجسدية للسائق والركاب في بعض الحالات.</li>
+                </ul>
+                <p>وهو الخيار الاقتصادي المناسب لمن يبحث عن الالتزام النظامي بأقل تكلفة، لكنه لا يمنح أي حماية لسيارتك في حال تعرضها للتلف أو السرقة.</p>
+            `
+        },
+        "veh-premium": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "التأمين المميز هو وثيقة وسطية تجمع بين تغطية المسؤولية تجاه الغير وحماية جزئية لمركبتك، بسعر أقل من التأمين الشامل وبتغطية أوسع من التأمين ضد الغير.",
+            full: `
+                <p>يمنحك التأمين المميز حماية متوازنة تشمل الأضرار التي تلحق بمركبتك في بعض الحالات، بالإضافة إلى تغطية المسؤولية تجاه الآخرين. ويشمل عادةً:</p>
+                <ul>
+                    <li>المسؤولية تجاه الغير عن الأضرار والإصابات.</li>
+                    <li>تغطية أضرار المركبة في حالات محددة كالحوادث المرورية.</li>
+                    <li>تغطية الحريق والسرقة بحدود معينة.</li>
+                    <li>المساعدة على الطريق خلال ساعات محددة.</li>
+                    <li>خيارات إضافية مثل حماية المحرك أو الزجاج.</li>
+                </ul>
+                <p>وهو الخيار المناسب لمن يريد حماية أوسع من ضد الغير دون تحمّل تكلفة التأمين الشامل بالكامل، مع بعض الاستثناءات والمبالغ التحملية التي تختلف من شركة لأخرى.</p>
+            `
+        },
+        "veh-comprehensive": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "التأمين الشامل من بي كير هو خيارك الأول والذكي لو تبحث عن أرخص تأمين شامل في السعودية يجمع بين السعر المنافس والحماية، لأنه يوفر حماية كاملة لسيارتك تضمن تصليحها أو استبدالها في حال وقوع حادث حتى لو كان الخطأ عليك 100%، بالإضافة لتغطية المسؤولية تجاه الغير.",
+            full: `
+                <p>يوفّر لك التأمين الشامل من بي كير راحة البال الكاملة، لأنه يغطي مركبتك ضد مجموعة واسعة من المخاطر، ويمنحك إمكانية إصلاح سيارتك في ورش معتمدة، مع تغطية المسؤولية تجاه الغير التي قد تصل إلى ملايين الريالات في حال إصابة الآخرين. ويشمل عادةً:</p>
+                <ul>
+                    <li>تغطية كاملة لأضرار مركبتك حتى لو كان الخطأ عليك.</li>
+                    <li>الحماية من السرقة والسطو.</li>
+                    <li>الحريق والانفجار والكوارث الطبيعية.</li>
+                    <li>تغطية الحوادث الشخصية للسائق والركاب.</li>
+                    <li>المساعدة على الطريق على مدار الساعة.</li>
+                    <li>خيارات إضافية مثل حماية المحرك وتعويض قيمة الفاتورة وبدل استئجار سيارة.</li>
+                </ul>
+                <p>وبذلك لا تقتصر الحماية على سيارتك فقط، بل تمتد إلى الطرف الآخر أيضًا، وتضمن لك تجربة قيادة أكثر اطمئنانًا واستقرارًا.</p>
+            `
+        },
+
+        /* ======== السفر ======== */
+        "trv-world-except": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "إذا كانت وجهتك أي دولة حول العالم باستثناء أمريكا وكندا، فهذي التغطية تعطيك الأساسيات اللي تحتاجها في سفرتك، مثل المصاريف الطبية الطارئة، والإخلاء الطبي، والمساعدة في العودة إلى الوطن، وغيرها من مزايا تأمين السفر.",
+            full: `
+                <p>هذا النوع من التغطية مصمم للمسافرين إلى معظم دول العالم مع استثناء أمريكا الشمالية (الولايات المتحدة وكندا). ويشمل عادةً:</p>
+                <ul>
+                    <li>المصاريف الطبية الطارئة أثناء الرحلة.</li>
+                    <li>الإخلاء الطبي الطارئ والنقل إلى أقرب مستشفى.</li>
+                    <li>المساعدة على العودة إلى الوطن عند الضرورة الطبية.</li>
+                    <li>تغطية إلغاء الرحلة أو اختصارها لأسباب مشمولة.</li>
+                    <li>تعويض تأخر الرحلات وما يرافقها من مصاريف إقامة وطعام.</li>
+                    <li>تغطية فقدان الأمتعة أو سرقتها أو تأخر وصولها.</li>
+                    <li>المساعدة عند فقدان جواز السفر أو المستندات.</li>
+                </ul>
+                <p>وهي التغطية الأكثر اقتصادية لمن يسافر إلى أوروبا وآسيا وإفريقيا ومعظم دول العالم، دون الحاجة إلى تغطية أمريكا وكندا المرتفعة التكاليف.</p>
+            `
+        },
+        "trv-worldwide": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "تغطية حول العالم تمنحك حماية واسعة تشمل جميع دول العالم بما فيها أمريكا وكندا، وهي الخيار الأمثل للمسافرين الذين يزورون أكثر من وجهة في رحلة واحدة أو يحتاجون مرونة كاملة في تغطيتهم.",
+            full: `
+                <p>تمنحك هذه التغطية أوسع نطاق جغرافي ممكن، إذ تشمل جميع دول العالم بدون استثناء، بما فيها الولايات المتحدة وكندا التي ترتفع فيها تكاليف العلاج. وتشمل عادةً:</p>
+                <ul>
+                    <li>المصاريف الطبية الطارئة بحدود أعلى تناسب ارتفاع التكاليف.</li>
+                    <li>الإخلاء الطبي الطارئ والنقل الطبي المتخصص.</li>
+                    <li>المساعدة على العودة إلى الوطن والإخلاء الطبي الدولي.</li>
+                    <li>إلغاء الرحلة أو اختصارها لأسباب مشمولة.</li>
+                    <li>تعويض تأخر الرحلات ومصاريف الإقامة والطعام.</li>
+                    <li>تغطية فقدان الأمتعة أو سرقتها أو تأخرها.</li>
+                    <li>المساعدة القانونية والدعم الطارئ على مدار الساعة.</li>
+                    <li>تغطية المسؤولية الشخصية تجاه الغير.</li>
+                </ul>
+                <p>وهي الخيار المثالي لمن يسافر إلى الولايات المتحدة أو كندا، أو لمن يخطط لرحلة متعددة الوجهات تحتاج إلى تغطية شاملة بدون قيود جغرافية.</p>
+            `
+        },
+        "trv-schengen": {
+            title: "ما الذي يغطيه التأمين؟",
+            short: "تغطية شنغن مصممة خصيصًا لتلبية متطلبات التأشيرة الأوروبية، وتُعد شرطًا إلزاميًا للحصول على تأشيرة شنغن. توفر لك الحد الأدنى من التغطية الطبية المطلوبة، مع مزايا إضافية تناسب المسافرين إلى دول الاتحاد الأوروبي.",
+            full: `
+                <p>تأشيرة شنغن تشترط وجود تأمين سفر بحد أدنى 30,000 يورو للتغطية الطبية، ويجب أن يكون ساريًا في جميع دول شنغن وطوال مدة الرحلة. وتشمل هذه التغطية عادةً:</p>
+                <ul>
+                    <li>المصاريف الطبية الطارئة بحد أدنى 30,000 يورو.</li>
+                    <li>الإخلاء الطبي الطارئ والإعادة إلى الوطن.</li>
+                    <li>تغطية الوفاة الناتجة عن حادث أو مرض.</li>
+                    <li>المساعدة على مدار الساعة في جميع دول الاتحاد الأوروبي.</li>
+                    <li>تغطية إلغاء الرحلة أو تأخرها لأسباب مشمولة.</li>
+                    <li>تغطية فقدان الأمتعة أو تأخر وصولها.</li>
+                    <li>المساعدة عند فقدان جواز السفر أو الوثائق الرسمية.</li>
+                </ul>
+                <p>ويُنصح دائمًا بالتأكد من أن الوثيقة تستوفي متطلبات السفارة قبل تقديم طلب التأشيرة، مع الاحتفاظ بنسخة مطبوعة أو إلكترونية من الوثيقة أثناء السفر.</p>
+            `
+        }
+    };
+
+    /* =========================================================
        ============  بيانات العروض (7 عروض)  ==================
        ========================================================= */
     const OFFERS = {
@@ -2732,7 +2880,7 @@
             });
         });
 
-        /* ====== Footer Accordion (مثل نظام الأسئلة الشائعة) ====== */
+        /* ====== Footer Accordion ====== */
         const footerAccItems = document.querySelectorAll('#footer-accordion .accordion-item');
         footerAccItems.forEach(item => {
             const header = item.querySelector('.accordion-header');
@@ -2748,6 +2896,51 @@
                     item.classList.add('open');
                 }
             });
+        });
+
+        /* ====== نصوص تغطيات التأمين + زر اقرأ المزيد ====== */
+        const coverageInfoBox = document.getElementById('coverage-info');
+        const coverageShortEl = document.getElementById('coverage-short');
+        const coverageMoreEl = document.getElementById('coverage-more');
+        const readMoreLink = document.getElementById('read-more-link');
+        const coverageTabsEl = document.getElementById('coverage-tabs');
+
+        function renderCoverage(key) {
+            const data = COVERAGE_CONTENT[key];
+            if (!data) return;
+            const h3 = coverageInfoBox.querySelector('h3');
+            if (h3) h3.textContent = data.title;
+            coverageShortEl.textContent = data.short;
+            coverageMoreEl.innerHTML = data.full;
+            // إعادة التصغير عند تغيير التبويب
+            coverageInfoBox.classList.remove('expanded');
+            readMoreLink.textContent = 'اقرأ المزيد';
+        }
+
+        // زر اقرأ المزيد (يعمل مع كل التبويبات)
+        readMoreLink.addEventListener('click', function() {
+            const isExpanded = coverageInfoBox.classList.contains('expanded');
+            if (isExpanded) {
+                coverageInfoBox.classList.remove('expanded');
+                readMoreLink.textContent = 'اقرأ المزيد';
+            } else {
+                coverageInfoBox.classList.add('expanded');
+                readMoreLink.textContent = 'عرض أقل';
+            }
+        });
+
+        // النقر على تبويبات التغطية (لكل الأقسام)
+        coverageTabsEl.addEventListener('click', function(e) {
+            const btn = e.target.closest('.cov-tab');
+            if (!btn) return;
+            const key = btn.getAttribute('data-cov');
+            if (!key) return;
+
+            // إزالة التنشيط من الكل
+            coverageTabsEl.querySelectorAll('.cov-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            renderCoverage(key);
         });
 
         /* ====== التنقل بين الصفحات (Routing) ====== */
@@ -2854,7 +3047,6 @@
         function handleRoute() {
             const hash = window.location.hash;
 
-            // Article detail
             let m = hash.match(/^#article\/(.+)$/);
             if (m && ARTICLES[m[1]]) {
                 if (mainApp.style.display !== 'none' && articlePage.style.display === 'none') {
@@ -2867,7 +3059,6 @@
                 return;
             }
 
-            // Offer detail
             m = hash.match(/^#offer\/(.+)$/);
             if (m && OFFERS[m[1]]) {
                 if (mainApp.style.display !== 'none') {
@@ -2880,7 +3071,6 @@
                 return;
             }
 
-            // All offers
             if (hash === '#all-offers') {
                 if (mainApp.style.display !== 'none') {
                     savedScroll = window.scrollY;
@@ -2892,7 +3082,6 @@
                 return;
             }
 
-            // All articles
             if (hash === '#all-articles') {
                 if (mainApp.style.display !== 'none') {
                     savedScroll = window.scrollY;
@@ -2904,16 +3093,13 @@
                 return;
             }
 
-            // Default: main app
             showMain();
         }
 
         window.addEventListener('hashchange', handleRoute);
 
-        // Global click delegation
         document.addEventListener('click', function(e) {
 
-            // Article card
             const card = e.target.closest('.article-card');
             if (card && card.dataset.article) {
                 e.preventDefault();
@@ -2921,7 +3107,6 @@
                 return;
             }
 
-            // Offer button (in slider)
             const offerBtn = e.target.closest('[data-offer]');
             if (offerBtn && offerBtn.dataset.offer) {
                 e.preventDefault();
@@ -2929,7 +3114,6 @@
                 return;
             }
 
-            // Offer tile (in all offers page)
             const offerTile = e.target.closest('[data-offer-tile]');
             if (offerTile && offerTile.dataset.offerTile) {
                 e.preventDefault();
@@ -2937,7 +3121,6 @@
                 return;
             }
 
-            // View more offers button
             const moreOffers = e.target.closest('#view-more-offers-btn');
             if (moreOffers) {
                 e.preventDefault();
@@ -2945,7 +3128,6 @@
                 return;
             }
 
-            // View all articles button
             const moreArticles = e.target.closest('#view-all-articles-btn');
             if (moreArticles) {
                 e.preventDefault();
@@ -2954,7 +3136,6 @@
             }
         });
 
-        // Back buttons
         function goHome() {
             if (window.location.hash) {
                 window.location.hash = '';
@@ -2972,7 +3153,6 @@
         document.getElementById('all-articles-back-icon').addEventListener('click', goHome);
         document.getElementById('all-articles-back-btn').addEventListener('click', goHome);
 
-        // Run route on first load
         handleRoute();
 
         /* ====== Dynamic Tab Switching Logic ====== */
@@ -3073,15 +3253,31 @@
                     tableImageContainer.innerHTML = '<img src="https://i.imgur.com/OVGOoUy.png" alt="Travel Table" />';
                     coverageTabs.style.display = 'flex';
                     coverageTabs.innerHTML = `
-                        <button class="cov-tab">حول العالم باستثناء امريكا وكندا</button>
-                        <button class="cov-tab">حول العالم</button>
-                        <button class="cov-tab active">شنقن</button>
+                        <button class="cov-tab" data-cov="trv-world-except">حول العالم باستثناء امريكا وكندا</button>
+                        <button class="cov-tab" data-cov="trv-worldwide">حول العالم</button>
+                        <button class="cov-tab active" data-cov="trv-schengen">شنقن</button>
                     `;
                     coverageInfo.innerHTML = `
                         <h3>ما الذي يغطيه التأمين؟</h3>
-                        <p>إذا كانت وجهتك أي دولة حول العالم باستثناء أمريكا وكندا، فهذي التغطية تعطيك الأساسيات اللي تحتاجها في سفرتك، مثل المصاريف الطبية الطارئة، والإخلاء الطبي، والمساعدة في العودة إلى الوطن، وغيرها من مزايا تأمين السفر.</p>
+                        <p id="coverage-short">تغطية شنغن مصممة خصيصًا لتلبية متطلبات التأشيرة الأوروبية، وتُعد شرطًا إلزاميًا للحصول على تأشيرة شنغن. توفر لك الحد الأدنى من التغطية الطبية المطلوبة، مع مزايا إضافية تناسب المسافرين إلى دول الاتحاد الأوروبي.</p>
+                        <a class="read-more-link" id="read-more-link" role="button">اقرأ المزيد</a>
+                        <div class="coverage-more" id="coverage-more">
+                            <p>تأشيرة شنغن تشترط وجود تأمين سفر بحد أدنى 30,000 يورو للتغطية الطبية، ويجب أن يكون ساريًا في جميع دول شنغن وطوال مدة الرحلة. وتشمل هذه التغطية عادةً:</p>
+                            <ul>
+                                <li>المصاريف الطبية الطارئة بحد أدنى 30,000 يورو.</li>
+                                <li>الإخلاء الطبي الطارئ والإعادة إلى الوطن.</li>
+                                <li>تغطية الوفاة الناتجة عن حادث أو مرض.</li>
+                                <li>المساعدة على مدار الساعة في جميع دول الاتحاد الأوروبي.</li>
+                                <li>تغطية إلغاء الرحلة أو تأخرها لأسباب مشمولة.</li>
+                                <li>تغطية فقدان الأمتعة أو تأخر وصولها.</li>
+                                <li>المساعدة عند فقدان جواز السفر أو الوثائق الرسمية.</li>
+                            </ul>
+                            <p>ويُنصح دائمًا بالتأكد من أن الوثيقة تستوفي متطلبات السفارة قبل تقديم طلب التأشيرة، مع الاحتفاظ بنسخة مطبوعة أو إلكترونية من الوثيقة أثناء السفر.</p>
+                        </div>
                         <div class="dots"><span class="dot active"></span><span class="dot"></span></div>
                     `;
+                    // إعادة ربط عناصر التغطية بعد إعادة بناء الـ HTML
+                    rewireCoverageElements();
                     featuresTable.innerHTML = `
                         <div class="tb-header"><span>الميزة</span><span>الوصف</span></div>
                         <div class="tb-row"><div class="tb-right"><div class="tb-icon"><i class="fa-solid fa-notes-medical"></i></div><div class="tb-text"><h4>المصاريف الطبية الطارئة</h4><p>تغطي تكاليف العلاج الطبي غير المتوقع في الخارج</p></div></div><div class="tb-check"><i class="fa-regular fa-circle-check"></i></div></div>
@@ -3144,6 +3340,7 @@
                     `;
 
                 } else {
+                    // استعادة المحتوى الأصلي للمركبات
                     heroTitle.innerHTML = originalContent.heroTitle;
                     heroSubtitle.innerHTML = originalContent.heroSubtitle;
                     heroImg.src = originalContent.heroImgSrc;
@@ -3157,9 +3354,53 @@
                     guideTitle.innerHTML = originalContent.guideTitle;
                     guideSubtitle.innerHTML = originalContent.guideSubtitle;
                     articlesList.innerHTML = originalContent.articlesList;
+                    // إعادة ربط عناصر التغطية بعد استعادة الـ HTML
+                    rewireCoverageElements();
                 }
             });
         });
+
+        /* ====== إعادة ربط عناصر التغطية بعد تغيير HTML ====== */
+        function rewireCoverageElements() {
+            // نستخدم مرجعًا جديدًا للعناصر داخل coverage-info
+            const box = document.getElementById('coverage-info');
+            if (!box) return;
+            const shortEl = box.querySelector('#coverage-short');
+            const moreEl = box.querySelector('#coverage-more');
+            const linkEl = box.querySelector('#read-more-link');
+            // في حالة وجود العناصر، نقوم بتحديث المراجع العامة
+            if (linkEl) {
+                linkEl.addEventListener('click', function() {
+                    const isExpanded = box.classList.contains('expanded');
+                    if (isExpanded) {
+                        box.classList.remove('expanded');
+                        linkEl.textContent = 'اقرأ المزيد';
+                    } else {
+                        box.classList.add('expanded');
+                        linkEl.textContent = 'عرض أقل';
+                    }
+                });
+            }
+        }
+
+        // استدعاء أولي لضمان ربط العناصر الافتراضية
+        rewireCoverageElements();
+
+        /* ====== تفعيل تبويب التغطية الافتراضي (شامل) عند التحميل ====== */
+        // التأكد من عرض النص الصحيح للتبويب النشط افتراضيًا
+        const defaultCovTab = coverageTabs.querySelector('.cov-tab.active');
+        if (defaultCovTab) {
+            const key = defaultCovTab.getAttribute('data-cov');
+            if (key && COVERAGE_CONTENT[key]) {
+                const data = COVERAGE_CONTENT[key];
+                const h3 = coverageInfo.querySelector('h3');
+                if (h3) h3.textContent = data.title;
+                const shortEl = coverageInfo.querySelector('#coverage-short');
+                const moreEl = coverageInfo.querySelector('#coverage-more');
+                if (shortEl) shortEl.textContent = data.short;
+                if (moreEl) moreEl.innerHTML = data.full;
+            }
+        }
     });
 </script>
 
