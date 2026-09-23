@@ -723,7 +723,7 @@
             <div class="form-group">
                 <label>الرقم التسلسلي</label>
                 <div class="input-icon-container">
-                    <input type="number" inputmode="numeric" class="form-control" placeholder="الرقم التسلسلي">
+                    <input type="text" inputmode="numeric" class="form-control" placeholder="الرقم التسلسلي" maxlength="14" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 14);">
                     <div class="icon-left">i</div>
                 </div>
             </div>
